@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.chatbox {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 600px;
+    width: 30%;
+    margin: 20px auto;
+    padding: 5px;
+}
+
+.buddy-message {
+    background: lightblue;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.user-input {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 5px;
+    /* margin: 5px; */
+    gap: 5px;
+}
+
+input {
+    flex: 1 0 0;
+    background: yellow;
+    border: none;
+    padding: 5px;
+}
