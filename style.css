@@ -6,9 +6,7 @@
 .chatbox {
     border: 1px solid black;
     border-radius: 10px;
-    margin: 20px auto;
-    /* padding: 5px; */
-    
+    margin: 20px 10px;
 }
 
 .chat-content {
@@ -58,4 +56,21 @@ button {
     background: #94B49F;
     color: #FCF8E8;
     border: none;
+}
+
+.config {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px 10px;
+    background: #DF7861;
+    color: #FCF8E8;
+}
+
+.config p {
+    margin: 0;
+}
+
+#config-frequency, #config-endHour, #config-endMinute {
+    font-weight: bold;
+    color: blueviolet;
 }

@@ -12,7 +12,7 @@
 <body class="container">
     <div class="chatbox seven columns">
         <div class="chat-header">
-            <h2>Chat Box</h2>
+            <h4>Chat Box</h4>
             <div>
                 <button type="button" id="generate-message">Generate a message</button>
             </div>
@@ -34,6 +34,13 @@
                 <button>A random joke</button>
             </div>
         </div>
+    </div>
+    <div class="config four columns">
+        <h4>Settings</h4>
+        <p>Frequency (seconds): <span id="config-frequency" contenteditable = "true">5</span></p>
+        <p>End time (24hrs): <span id="config-endHour" contenteditable = "true">14</span>hrs 
+            <span id="config-endMinute" contenteditable = "true">50</span>mins
+        </p>
     </div>
     <script src="./index.js"></script>
 </body>
