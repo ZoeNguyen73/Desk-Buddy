@@ -25,21 +25,56 @@
                 <img class="buddy-chat-profile-pic" src="./images/buddy-profile-pic-cat.png" alt="buddy-profile-pic" />
                 <p class="buddy-message-content">Hello there!</p>
             </div>
-            <div class="buddy-message">
-                <img class="buddy-chat-profile-pic" src="./images/buddy-profile-pic-cat.png" alt="buddy-profile-pic" />
-                <p class="buddy-message-content">Take a short break?</p>
-            </div>
-            <div class="user-input">
-                <button>A random meme</button>
-                <button>A random joke</button>
-            </div>
         </div>
     </div>
     <div class="config four columns">
         <h4>Settings</h4>
-        <p>Frequency (seconds): <span id="config-frequency" contenteditable = "true">5</span></p>
-        <p>End time (24hrs): <span id="config-endHour" contenteditable = "true">14</span>hrs 
-            <span id="config-endMinute" contenteditable = "true">50</span>mins
+
+        <p>Frequency (sec): 
+            <select name="30" id="config-frequency">
+                <option value=5 selected>5</option>
+                <option value=10>10</option>
+                <option value=20>20</option>
+                <option value=30>30</option>
+                <option value=40>40</option>
+                <option value=50>50</option>
+                <option value=60>60</option>
+            </select>
+        </p>
+
+        <p id="config-end-time">End time (24hrs): 
+            <select name="hh" id="config-end-hour">
+                <option value=1>01</option>
+                <option value=2>02</option>
+                <option value=3>03</option>
+                <option value=4>04</option>
+                <option value=5>05</option>
+                <option value=6>06</option>
+                <option value=7>07</option>
+                <option value=8>08</option>
+                <option value=9>09</option>
+                <option value=10>10</option>
+                <option value=11 selected>11</option>
+                <option value=12>12</option>
+            </select> :
+            <select name="mm" id="config-end-minute">
+                <option value=0>00</option>
+                <option value=5>05</option>
+                <option value=10>10</option>
+                <option value=15>15</option>
+                <option value=20>20</option>
+                <option value=25>25</option>
+                <option value=30>30</option>
+                <option value=35>35</option>
+                <option value=40>40</option>
+                <option value=45>45</option>
+                <option value=50>50</option>
+                <option value=55 selected>55</option>
+            </select>  
+            <select name="session" id="config-end-session">
+                <option value="AM">AM</option>
+                <option value="PM" selected>PM</option>
+            </select>  
         </p>
     </div>
     <script src="./index.js"></script>

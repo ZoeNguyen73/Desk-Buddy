@@ -4,7 +4,7 @@
 }
 
 .chatbox {
-    border: 1px solid black;
+    border: 1px solid lightgray;
     border-radius: 10px;
     margin: 20px 10px;
 }
@@ -12,10 +12,18 @@
 .chat-content {
     overflow-y: scroll;
     height: 600px;
+    padding: 20px;
 }
 
-.chat-header {
+.chat-header, .config {
     border-radius: 10px;
+    padding: 10px;
+    background: #DF7861;
+    color: #FCF8E8;
+}
+
+.chat-header p {
+    margin-bottom: 0;
 }
 
 .buddy-message {
@@ -28,7 +36,7 @@
     background: lightblue;
     border-radius: 5px;
     padding: 5px;
-    margin: 5px;
+    margin: 5px 0px;
     flex: 1 0 0;
     align-items: center;
     display: flex;
@@ -47,30 +55,39 @@
     height: auto;
 }
 
-.chat-header {
-    background: #DF7861;
-    color: #FCF8E8;
-}
-
 button {
     background: #94B49F;
     color: #FCF8E8;
     border: none;
+    margin-bottom: 0;
 }
 
 .config {
-    border: 1px solid black;
-    border-radius: 10px;
     margin: 20px 10px;
-    background: #DF7861;
-    color: #FCF8E8;
 }
 
 .config p {
     margin: 0;
 }
 
-#config-frequency, #config-endHour, #config-endMinute {
+#config-frequency, #config-end-hour, #config-end-minute, #config-end-session {
     font-weight: bold;
-    color: blueviolet;
+    color: black;
+}
+
+select {
+    padding: 0;
+    height: 1.5em;
+    border: none;
+    background: rgb(253, 249, 249);
+}
+
+.notif {
+    background: rgb(236, 236, 236);
+    font-size: 0.8em;
+    font-style: italic;
+    text-align: center;
+    color: lightslategray;
+    border-radius: 5px;
+    margin: 5px 0;
 }

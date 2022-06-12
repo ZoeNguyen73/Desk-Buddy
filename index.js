@@ -1,7 +1,7 @@
 console.log("js file linked");
 
 class Config {
-    constructor(frequency = 5000, endHour = 14, endMinute = 25) {
+    constructor(frequency = 5000, endHour = 23, endMinute = 55) {
         this.frequency = frequency;
         this.endHour = endHour;
         this.endMinute = endMinute;
@@ -12,7 +12,7 @@ class Config {
     }
 
     updateEndTime(newEndHour, newEndMinute) {
-        // if the time keyed in is before current time, reject and prompt user to input again
+        // TO ADD: if the time keyed in is before current time, reject and prompt user to input again
         this.endHour = newEndHour;
         this.endMinute = newEndMinute;
     }
@@ -58,6 +58,10 @@ class Chat {
         alt: "buddy-profile-pic"
     }
 
+    static ScrollToBottom() {
+        document.querySelector(".chat-content").scrollTop = document.querySelector(".chat-content").scrollHeight;
+    }
+
     constructor(username = "Buddy") {
         this.username = username;
         this.config = new Config();
@@ -86,8 +90,7 @@ class Chat {
         newMessage.append(messageContent);
 
         document.querySelector(".chat-content").append(newMessage);
-
-        document.querySelector(".chat-content").scrollTop = document.querySelector(".chat-content").scrollHeight;
+        Chat.ScrollToBottom();
     }
     
     createNewEventMessage() {
@@ -96,10 +99,9 @@ class Chat {
         this.addChatMessage(newEvent.message);
         this.currentEvent === 4 ? this.currentEvent = 1 : this.currentEvent ++;
 
-        // console.log(newEvent.userInputs);
         if (newEvent.userInputs === undefined) {
             return
-        }
+        };
 
         const newUserInput = document.createElement("div");
         newUserInput.setAttribute("class", "user-input");
@@ -111,26 +113,33 @@ class Chat {
         });
 
         document.querySelector(".chat-content").append(newUserInput);
+        Chat.ScrollToBottom();
+    }
+    
+    createNotif(type) {
+        const newNotif = document.createElement("div");
+        newNotif.setAttribute("class", "notif");
+        if (type === "frequency") {
+            newNotif.innerText =`Frequency has been changed to every ${this.config.frequency / 1000} seconds`;
+        }
+        if (type === "endTime") {
+            let endHour = this.config.endHour;
+            let session = "AM";
 
-        document.querySelector(".chat-content").scrollTop = document.querySelector(".chat-content").scrollHeight;
-    }   
+            if (endHour > 12) {
+                endHour -= 12;
+                session = "PM";
+            } 
+            newNotif.innerText =`End time has been changed to ${endHour}:${this.config.endMinute} ${session}`;
+        }
+        document.querySelector(".chat-content").append(newNotif);
+    }
 
-}
+    createEndDayMessage() {
+        this.addChatMessage(`It's the end of day~ Good bye!`);
+        Chat.ScrollToBottom();
+    }
 
-function init() {
-    const newChat = new Chat();
-
-    // button to manually generate text message for testing
-    document.getElementById("generate-message").addEventListener("click", function(event) {
-        event.preventDefault();
-        newChat.createNewEventMessage();
-    });
-
-    runClock();
-    const runPrompt = setInterval(function() {newChat.createNewEventMessage()}, newChat.config.frequency);
-    checkTime(runPrompt, newChat.config.endHour, newChat.config.endMinute);
-
-    //when end time is extended, need a trigger to resume interval
 }
 
 let currentTime = undefined;
@@ -139,25 +148,91 @@ function runClock() {
     currentTime = new Date();
     let hh = currentTime.getHours();
     let mm = currentTime.getMinutes();
-    let session = "";
+    let session = hh > 12 ? "PM" : "AM";
 
     hh = (hh < 10) ? "0" + hh : hh;
+    hh = (hh > 12) ? hh - 12 : hh;
     mm = (mm < 10) ? "0" + mm : mm;
-    session = hh > 11 ? "PM" : "AM";
+    
 
     document.getElementById("clock").innerText = `${hh}:${mm} ${session}`;
-    setTimeout(function(){ runClock() }, 30000);
+    setTimeout(function(){ runClock() }, 1000);
 }
 
-function checkTime(intervalFunction, endHour, endMinute) {
-    // console.log(`Current hr is ${currentTime.getHours()}, end hr is ${endHour}`);
-    // console.log(`Current min is ${currentTime.getMinutes()}, end min is ${endMinute}`);
-    if (endHour < currentTime.getHours() || (endHour === currentTime.getHours() && endMinute <= currentTime.getMinutes())) {
-        console.log("time's up");
-        clearInterval(intervalFunction);
-        return
+function runChatInterval(chat, lastMsgTime) {
+    const interval = chat.config.frequency;
+    console.log(`Current frequency is ${interval}`);
+    console.log(`Last msg time is ${lastMsgTime}`);
+    console.log(`Current time is ${currentTime.getTime()}`);
+    console.log(`The gap is ${currentTime.getTime() - lastMsgTime}`);
+
+    //if toStop = true, return
+    if (toStop(chat.config)) { 
+        console.log("Time's up");
+        chat.createEndDayMessage();
+        return 
     };
-    setTimeout(function(){ checkTime(intervalFunction, endHour, endMinute) }, 30000);
+
+    //if interval frequency has laspsed, send new msg
+    if (currentTime.getTime() - lastMsgTime >= interval) {
+        chat.createNewEventMessage();
+        lastMsgTime = currentTime.getTime();
+    };
+
+    setTimeout(function(){ runChatInterval(chat, lastMsgTime) }, 1000);
+}
+
+function toStop(config) {
+    const endHour = config.endHour;
+    const endMinute = config.endMinute;
+    // console.log(`Current time is ${currentTime.getHours()} : ${currentTime.getMinutes()}`)
+    return (endHour < currentTime.getHours() || (endHour === currentTime.getHours() && endMinute <= currentTime.getMinutes()))
+}
+
+function addConfigListeners(chat) {
+    //frequency change
+    document.getElementById("config-frequency").addEventListener("change", function() {
+        const newFrequency = document.getElementById("config-frequency").value * 1000;
+        chat.config.updateFrequency(newFrequency);
+        chat.createNotif("frequency");
+        Chat.ScrollToBottom();
+    })
+
+    //end time change
+    document.getElementById("config-end-time").addEventListener("change", function() {
+        let newEndHour = document.getElementById("config-end-hour").value * 1;
+        const newEndMinute = document.getElementById("config-end-minute").value * 1;
+
+        if (document.getElementById("config-end-session").value === "PM" && newEndHour < 12) {
+            newEndHour += 12;
+        };
+
+        if (document.getElementById("config-end-session").value === "AM" && newEndHour === 12) {
+            newEndHour = 0;
+        };
+
+        chat.config.updateEndTime(newEndHour, newEndMinute);
+        chat.createNotif("endTime");
+        Chat.ScrollToBottom();
+    })
+}
+
+function init() {
+
+    // TO ADD: Prompt user for name
+
+    const newChat = new Chat();
+    let lastMsgTime = new Date().getTime();
+    
+    addConfigListeners(newChat);
+    runClock();
+    runChatInterval(newChat, lastMsgTime);
+
+    // button to manually generate text message for testing
+    document.getElementById("generate-message").addEventListener("click", function(event) {
+        event.preventDefault();
+        newChat.createNewEventMessage();
+    });
 }
 
 init();
