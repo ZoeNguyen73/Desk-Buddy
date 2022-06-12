@@ -6,30 +6,56 @@
 .chatbox {
     border: 1px solid black;
     border-radius: 10px;
-    height: 600px;
-    width: 30%;
     margin: 20px auto;
-    padding: 5px;
+    /* padding: 5px; */
+    
+}
+
+.chat-content {
+    overflow-y: scroll;
+    height: 600px;
+}
+
+.chat-header {
+    border-radius: 10px;
 }
 
 .buddy-message {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1em;
+}
+
+.buddy-message-content {
     background: lightblue;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    flex: 1 0 0;
+    align-items: center;
+    display: flex;
 }
 
 .user-input {
     display: flex;
     flex-flow: row nowrap;
     padding: 5px;
-    /* margin: 5px; */
     gap: 5px;
+    justify-content: center;
 }
 
-input {
-    flex: 1 0 0;
-    background: yellow;
+.buddy-chat-profile-pic {
+    width: 50px;
+    height: auto;
+}
+
+.chat-header {
+    background: #DF7861;
+    color: #FCF8E8;
+}
+
+button {
+    background: #94B49F;
+    color: #FCF8E8;
     border: none;
-    padding: 5px;
 }

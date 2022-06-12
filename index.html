@@ -4,32 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./Skeleton-2.0.4/css/skeleton.css">
     <link rel="stylesheet" href="./style.css">
     <title>Desk Buddy</title>
 </head>
-<body>
-    <div class="chatbox">
-        <h2>Chat Box</h2>
-
+<body class="container">
+    <div class="chatbox seven columns">
+        <div class="chat-header">
+            <h2>Chat Box</h2>
+            <div>
+                <button type="button" id="generate-message">Generate a message</button>
+            </div>
+            <div>
+                <p>Current time: <span onload="runClock()" id="clock">test</span></p>
+            </div>
+        </div>
         <div class="chat-content">
             <div class="buddy-message">
-                Hello there!
+                <img class="buddy-chat-profile-pic" src="./images/buddy-profile-pic-cat.png" alt="buddy-profile-pic" />
+                <p class="buddy-message-content">Hello there!</p>
             </div>
             <div class="buddy-message">
-                Nice one!
-            </div>
-            <div class="buddy-message">
-                Take a short break?
+                <img class="buddy-chat-profile-pic" src="./images/buddy-profile-pic-cat.png" alt="buddy-profile-pic" />
+                <p class="buddy-message-content">Take a short break?</p>
             </div>
             <div class="user-input">
-                <input type="submit" value="A random meme">
-                <input type="submit" value="A random joke">
-            </div>
-            <div class="buddy-message">
-                Time for a water break!
-            </div>
-            <div class="user-input">
-                <input type="submit" value="Yes, I am rehydrated!">
+                <button>A random meme</button>
+                <button>A random joke</button>
             </div>
         </div>
     </div>
