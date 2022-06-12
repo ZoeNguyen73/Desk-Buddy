@@ -1,12 +1,18 @@
 export default class Config {
-  constructor(frequency = 5000, endHour = 23, endMinute = 55) {
-      this.frequency = frequency;
+  constructor(frequency = 5000, endHour = 23, endMinute = 0) {
+      this.#frequency = frequency;
       this.endHour = endHour;
       this.endMinute = endMinute;
   }
 
-  updateFrequency(userInput) {
+  // setter function
+  setFrequency(userInput) {
       this.frequency = userInput;
+  }
+
+  // // getter function
+  getFrequency() {
+    return this.#frequency
   }
 
   updateEndTime(newEndHour, newEndMinute) {
