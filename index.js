@@ -185,7 +185,6 @@ function runChatInterval(chat, lastMsgTime) {
 function toStop(config) {
     const endHour = config.endHour;
     const endMinute = config.endMinute;
-    // console.log(`Current time is ${currentTime.getHours()} : ${currentTime.getMinutes()}`)
     return (endHour < currentTime.getHours() || (endHour === currentTime.getHours() && endMinute <= currentTime.getMinutes()))
 }
 
@@ -217,6 +216,23 @@ function addConfigListeners(chat) {
     })
 }
 
+function addGenerateMsgListener(chat) {
+    // button to manually generate text message for testing
+    document.getElementById("generate-message").addEventListener("click", function(event) {
+        event.preventDefault();
+        chat.createNewEventMessage();
+    });
+}
+
+function addEndDayListener(chat) {
+    // button to manually generate text message for testing
+    document.getElementById("end-the-day").addEventListener("click", function(event) {
+        event.preventDefault();
+        chat.config.updateEndTime(currentTime.getHours(), currentTime.getMinutes());
+        // chat.createEndDayMessage();
+    });
+}
+
 function init() {
 
     // TO ADD: Prompt user for name
@@ -225,14 +241,10 @@ function init() {
     let lastMsgTime = new Date().getTime();
     
     addConfigListeners(newChat);
+    addGenerateMsgListener(newChat);
+    addEndDayListener(newChat);
     runClock();
     runChatInterval(newChat, lastMsgTime);
-
-    // button to manually generate text message for testing
-    document.getElementById("generate-message").addEventListener("click", function(event) {
-        event.preventDefault();
-        newChat.createNewEventMessage();
-    });
 }
 
 init();
