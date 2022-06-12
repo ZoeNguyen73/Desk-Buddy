@@ -134,12 +134,6 @@ class Chat {
         }
         document.querySelector(".chat-content").append(newNotif);
     }
-
-    createEndDayMessage() {
-        this.addChatMessage(`It's the end of day~ Good bye!`);
-        Chat.ScrollToBottom();
-    }
-
 }
 
 let currentTime = undefined;
@@ -153,7 +147,6 @@ function runClock() {
     hh = (hh < 10) ? "0" + hh : hh;
     hh = (hh > 12) ? hh - 12 : hh;
     mm = (mm < 10) ? "0" + mm : mm;
-    
 
     document.getElementById("clock").innerText = `${hh}:${mm} ${session}`;
     setTimeout(function(){ runClock() }, 1000);
@@ -161,15 +154,15 @@ function runClock() {
 
 function runChatInterval(chat, lastMsgTime) {
     const interval = chat.config.frequency;
-    console.log(`Current frequency is ${interval}`);
-    console.log(`Last msg time is ${lastMsgTime}`);
-    console.log(`Current time is ${currentTime.getTime()}`);
-    console.log(`The gap is ${currentTime.getTime() - lastMsgTime}`);
+    // console.log(`Current frequency is ${interval}`);
+    // console.log(`Last msg time is ${lastMsgTime}`);
+    // console.log(`Current time is ${currentTime.getTime()}`);
+    // console.log(`The gap is ${currentTime.getTime() - lastMsgTime}`);
 
     //if toStop = true, return
     if (toStop(chat.config)) { 
         console.log("Time's up");
-        chat.createEndDayMessage();
+        chat.addChatMessage(`It's the end of day~ Good bye!`);
         return 
     };
 
@@ -229,7 +222,6 @@ function addEndDayListener(chat) {
     document.getElementById("end-the-day").addEventListener("click", function(event) {
         event.preventDefault();
         chat.config.updateEndTime(currentTime.getHours(), currentTime.getMinutes());
-        // chat.createEndDayMessage();
     });
 }
 
