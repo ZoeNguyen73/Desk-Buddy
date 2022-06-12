@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="./Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="./3rd-party/Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./3rd-party/Skeleton-2.0.4/css/skeleton.css">
     <link rel="stylesheet" href="./style.css">
     <title>Desk Buddy</title>
 </head>
@@ -23,7 +23,7 @@
         </div>
         <div class="chat-content">
             <div class="buddy-message">
-                <img class="buddy-chat-profile-pic" src="./images/buddy-profile-pic-cat.png" alt="buddy-profile-pic" />
+                <img class="buddy-chat-profile-pic" src="./assets/images/buddy-profile-pic-cat.png" alt="buddy-profile-pic" />
                 <p class="buddy-message-content">Hello there!</p>
             </div>
         </div>
@@ -31,7 +31,7 @@
     <div class="config four columns">
         <h4>Settings</h4>
 
-        <p>Frequency (sec): 
+        <p>Frequency (sec):
             <select name="30" id="config-frequency">
                 <option value=5 selected>5</option>
                 <option value=10>10</option>
@@ -43,7 +43,7 @@
             </select>
         </p>
 
-        <p id="config-end-time">End time (24hrs): 
+        <p id="config-end-time">End time (24hrs):
             <select name="hh" id="config-end-hour">
                 <option value=1>01</option>
                 <option value=2>02</option>
@@ -78,6 +78,6 @@
             </select>  
         </p>
     </div>
-    <script src="./index.js"></script>
+    <script type="module" src="./index.js"></script>
 </body>
 </html>
