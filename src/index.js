@@ -2,6 +2,7 @@ console.log("js file linked");
 
 import Chat from "./chat/chat.js"
 import Message from "./config/message.js";
+import {ToDoItem, ToDoList} from "./todo-list/todo-list.js";
 
 let currentTime = undefined;
 
@@ -66,6 +67,27 @@ function addConfigListeners(chat) {
     });
 }
 
+function addToDoListListeners(toDoList) {
+    //add new task
+    document.getElementById("submit-todo").addEventListener("click", function() {
+        const newToDo = new ToDoItem(document.getElementById("new-todo-item").value);
+        toDoList.addNewItem(newToDo);
+    });
+
+    //complete a task
+    document.querySelector(".list").addEventListener("click", function(event) {
+        const completedTask = event.target;
+
+        if (completedTask.getAttribute("class") !== "slider round") {
+            return
+        };
+
+        if(completedTask.previousElementSibling.checked) {
+            //
+        }
+    });
+}
+
 function addGenerateMsgListener(chat) {
     // button to manually generate text message for testing
     document.getElementById("generate-message").addEventListener("click", function(event) {
@@ -89,11 +111,14 @@ function init() {
     const helloMessage = new Message(`Nice to meet you, ${newChat.config.userName}!`);
     helloMessage.display(Chat.ChatBoxDom);
 
+    const newToDoList = new ToDoList();
+
     const lastMsgTime = new Date().getTime();
 
     addConfigListeners(newChat);
     addGenerateMsgListener(newChat);
     addEndDayListener(newChat);
+    addToDoListListeners(newToDoList);
     runClock();
     runChatInterval(newChat, lastMsgTime);
 }
