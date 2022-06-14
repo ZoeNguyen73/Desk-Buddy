@@ -3,10 +3,6 @@ console.log("js file linked");
 import Chat from "./chat/chat.js"
 import Message from "./config/message.js";
 
-class ToDoList {
-    //
-}
-
 let currentTime = undefined;
 
 function runClock() {

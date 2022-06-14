@@ -28,26 +28,67 @@
             </div>
         </div>
     </div>
-    <div class="config five columns">
-        <h4>Settings</h4>
+    
+    <div class="sidebar five columns">
+        <div class="config ">
+            <h4>Settings</h4>
 
-        <p>Frequency (sec):
-            <select name="30" id="config-frequency">
-                <option value=5 selected>5</option>
-                <option value=10>10</option>
-                <option value=20>20</option>
-                <option value=30>30</option>
-                <option value=40>40</option>
-                <option value=50>50</option>
-                <option value=60>60</option>
-            </select>
-        </p>
+            <p>Frequency (sec):
+                <select name="30" id="config-frequency">
+                    <option value=5 selected>5</option>
+                    <option value=10>10</option>
+                    <option value=20>20</option>
+                    <option value=30>30</option>
+                    <option value=40>40</option>
+                    <option value=50>50</option>
+                    <option value=60>60</option>
+                </select>
+            </p>
 
-        <p id="config-end-time">End time (24hrs):
-            <input type="time" id="end-time-input" value="23:59">
-            <button type="button" id="submit-end-time">Submit</button>
-        </p>
+            <p id="config-end-time">End time (24hrs):
+                <input type="time" id="end-time-input" value="23:59">
+                <button type="button" id="submit-end-time">Submit</button>
+            </p>
+        </div>
+
+        <div class="todo-list">
+            <div class="todo-header">
+                <h4>To do list</h4>
+            </div>
+            <div class="todo-content">
+                <div class="new-todo-input">
+                    <input type="text" id="new-todo-item" placeholder="add new to do task here">
+                    <button type="button" id="submit-todo">Submit</button>
+                </div>
+                <div class="lists">
+                    <ul>
+                        <li class="todo-item">
+                            <span contenteditable="true">Clear email inbox</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </li>
+                        <li class="todo-item">
+                            <span contenteditable="true">Work on May report</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </li>
+                        <li class="todo-item">
+                            <span contenteditable="true">Water the plants</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+
     <script type="module" src="./index.js"></script>
 </body>
 </html>
