@@ -68,6 +68,9 @@ export class NotifMessage extends Message{
 
       if (endHour > 12) {
         endHour -= 12;
+      };
+
+      if (endHour >= 12) {
         session = "PM";
       };
 
