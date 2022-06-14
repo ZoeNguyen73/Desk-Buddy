@@ -5,7 +5,7 @@ import { eventsArray } from "./event.js";
 export default class Config {
   static BuddyProfilePicSrc = "./assets/images/buddy-profile-pic-cat.png";
 
-  constructor(frequency = 5000, endHour = 23, endMinute = 55) {
+  constructor(frequency = 5000, endHour = 23, endMinute = 59) {
     this.frequency = frequency;
     this.endHour = endHour;
     this.endMinute = endMinute;

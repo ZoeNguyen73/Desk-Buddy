@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="config four columns">
+    <div class="config five columns">
         <h4>Settings</h4>
 
         <p>Frequency (sec):
@@ -44,38 +44,8 @@
         </p>
 
         <p id="config-end-time">End time (24hrs):
-            <select name="hh" id="config-end-hour">
-                <option value=1>01</option>
-                <option value=2>02</option>
-                <option value=3>03</option>
-                <option value=4>04</option>
-                <option value=5>05</option>
-                <option value=6>06</option>
-                <option value=7>07</option>
-                <option value=8>08</option>
-                <option value=9>09</option>
-                <option value=10>10</option>
-                <option value=11 selected>11</option>
-                <option value=12>12</option>
-            </select> :
-            <select name="mm" id="config-end-minute">
-                <option value=0>00</option>
-                <option value=5>05</option>
-                <option value=10>10</option>
-                <option value=15>15</option>
-                <option value=20>20</option>
-                <option value=25>25</option>
-                <option value=30>30</option>
-                <option value=35>35</option>
-                <option value=40>40</option>
-                <option value=45>45</option>
-                <option value=50>50</option>
-                <option value=55 selected>55</option>
-            </select>  
-            <select name="session" id="config-end-session">
-                <option value="AM">AM</option>
-                <option value="PM" selected>PM</option>
-            </select>  
+            <input type="time" id="end-time-input" value="23:59">
+            <button type="button" id="submit-end-time">Submit</button>
         </p>
     </div>
     <script type="module" src="./index.js"></script>

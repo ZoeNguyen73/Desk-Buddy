@@ -91,3 +91,12 @@ select {
     border-radius: 5px;
     margin: 5px 0;
 }
+
+#end-time-input {
+    color: black;
+    width: 100px;
+}
+
+#submit-end-time {
+    padding: 0 10px;
+}

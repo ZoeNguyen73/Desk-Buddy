@@ -60,24 +60,14 @@ function addConfigListeners(chat) {
         const newFrequency = document.getElementById("config-frequency").value * 1000;
         chat.config.setFrequency(newFrequency);
         chat.triggerNotif("frequency");
-    })
+    });
 
     //end time change
-    document.getElementById("config-end-time").addEventListener("change", function() {
-        let newEndHour = document.getElementById("config-end-hour").value * 1;
-        const newEndMinute = document.getElementById("config-end-minute").value * 1;
-
-        if (document.getElementById("config-end-session").value === "PM" && newEndHour < 12) {
-            newEndHour += 12;
-        };
-
-        if (document.getElementById("config-end-session").value === "AM" && newEndHour === 12) {
-            newEndHour = 0;
-        };
-
-        chat.config.updateEndTime(newEndHour, newEndMinute);
+    document.getElementById("submit-end-time").addEventListener("click", function() {
+        const inputString = document.getElementById("end-time-input").value;
+        chat.config.updateEndTime(inputString.slice(0, 2) * 1, inputString.slice(3,5) * 1);
         chat.triggerNotif("endTime");
-    })
+    });
 }
 
 function addGenerateMsgListener(chat) {
