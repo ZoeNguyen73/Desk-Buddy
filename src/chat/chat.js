@@ -4,8 +4,7 @@ import Message, { NotifMessage, EventMessage } from "../config/message.js";
 export default class Chat {
   static ChatBoxDom = document.querySelector(".chat-content");
 
-  constructor(username = "Buddy") {
-    this.username = username;
+  constructor() {
     this.config = new Config();
     this.currentEvent = 0;
   }
