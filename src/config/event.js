@@ -41,3 +41,28 @@ export class ChooseEvent extends ClickEvent {
     // trigger meme or joke
   }
 }
+
+/// create events
+
+const RandomMessage = new Event("randomMsg", "Hang in there!");
+
+const Water = new ClickEvent("water", "Time for a water break!",
+  {
+    1: "Yes, I am rehydrated!"
+  }
+);
+
+const Stretch = new ClickEvent("stretch", "How about a 5-min stretch?",
+  {
+    1: "Done! Feeling much better now"
+  }
+);
+
+const Break = new ChooseEvent("break", "Wanna see something funny?",
+  {
+    meme: "A randome meme",
+    joke: "A random joke"
+  }
+);
+
+export const eventsArray = [RandomMessage, Water, Stretch, Break];

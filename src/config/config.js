@@ -1,6 +1,6 @@
-import Message from "./message.js";
-import Event from "./event.js";
-import { ClickEvent, ChooseEvent } from "./event.js";
+// import Message from "./message.js";
+// import Event from "./event.js";
+import { eventsArray } from "./event.js";
 
 export default class Config {
   static BuddyProfilePicSrc = "./assets/images/buddy-profile-pic-cat.png";
@@ -27,27 +27,4 @@ export default class Config {
   }
 }
 
-/// create events
 
-const RandomMessage = new Event("randomMsg", "Hang in there!");
-
-const Water = new ClickEvent("water", "Time for a water break!",
-  {
-    1: "Yes, I am rehydrated!"
-  }
-);
-
-const Stretch = new ClickEvent("stretch", "How about a 5-min stretch?",
-  {
-    1: "Done! Feeling much better now"
-  }
-);
-
-const Break = new ChooseEvent("break", "Wanna see something funny?",
-  {
-    meme: "A randome meme",
-    joke: "A random joke"
-  }
-);
-
-const eventsArray = [RandomMessage, Water, Stretch, Break];

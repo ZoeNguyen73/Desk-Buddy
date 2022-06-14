@@ -1,6 +1,6 @@
-import Event from "./event.js";
-import { ClickEvent, ChooseEvent } from "./event.js";
-import Config from "../config/config.js";
+// import Event from "./event.js";
+// import { ClickEvent, ChooseEvent } from "./event.js";
+import Config from "./config.js";
 
 export default class Message {
   constructor(message) {
