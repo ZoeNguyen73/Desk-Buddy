@@ -1,5 +1,5 @@
 import Config from "../config/config.js"
-import Message, { NotifMessage, EventMessage } from "../config/message.js";
+import { NotifMessage, EventMessage } from "../config/message.js";
 
 export default class Chat {
   static ChatBoxDom = document.querySelector(".chat-content");
