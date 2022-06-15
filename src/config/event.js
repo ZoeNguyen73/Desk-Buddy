@@ -6,15 +6,16 @@ export default class Event {
 }
 
 export class ClickEvent extends Event {
+  #eventListenerType = "click";
+  #occurenceCount = 0;
+
   constructor(type, message, userOptions) {
     super(type, message);
     this.userOptions = userOptions; //array of users input
-    this.eventListenerType = "click";
-    this.occurenceCount = 0;
   }
 
   listenerEvent() {
-    this.occurenceCount ++;
+    this.#occurenceCount++;
   }
 
   displayOptions(parentDom) {
@@ -25,8 +26,8 @@ export class ClickEvent extends Event {
       const userOption = document.createElement("button");
       userOption.innerText = option;
 
-      if(this.eventListenerType.length > 0) {
-        newUserInput.addEventListener(this.eventListenerType, this.listenerEvent);
+      if(this.#eventListenerType.length > 0) {
+        newUserInput.addEventListener(this.#eventListenerType, this.listenerEvent());
       };
       
       newUserInput.append(userOption);
@@ -60,9 +61,9 @@ const Stretch = new ClickEvent("stretch", "How about a 5-min stretch?",
 
 const Break = new ChooseEvent("break", "Wanna see something funny?",
   {
-    meme: "A randome meme",
+    meme: "A random meme",
     joke: "A random joke"
   }
 );
 
-export const eventsArray = [RandomMessage, Water, Stretch, Break];
+export const events = [RandomMessage, Water, Stretch, Break];

@@ -1,22 +1,14 @@
-import { eventsArray } from "./event.js";
+import { events } from "./event.js";
 
 export default class Config {
   static BuddyProfilePicSrc = "./assets/images/buddy-profile-pic-cat.png";
 
-  constructor(frequency = 5000, endHour = 23, endMinute = 59, userName = "buddy") {
-    this.frequency = frequency;
+  constructor(frequencyInMs = 5000, endHour = 23, endMinute = 59, userName = "buddy") {
+    this.frequency = frequencyInMs;
     this.endHour = endHour;
     this.endMinute = endMinute;
-    this.eventsArray = eventsArray;
+    this.events = events;
     this.userName = userName;
-  }
-
-  setFrequency(userInput) {
-    this.frequency = userInput;
-  }
-
-  getFrequency() {
-    return this.frequency;
   }
 
   updateEndTime(newEndHour, newEndMinute) {

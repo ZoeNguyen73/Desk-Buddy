@@ -23,9 +23,8 @@ function runChatInterval(chat, lastMsgTime) {
 
     //if toStop = true, return
     if (toStop(chat.config)) {
-        // console.log("Time's up");
         const endMessage = new Message(`It's the end of day~ Good bye!`);
-        endMessage.display(Chat.ChatBoxDom);
+        endMessage.display(Chat.DOM);
         endMessage.scrollToBottom();
         return
     };
@@ -49,7 +48,7 @@ function addConfigListeners(chat) {
     //frequency change
     document.getElementById("config-frequency").addEventListener("change", function() {
         const newFrequency = document.getElementById("config-frequency").value * 1000;
-        chat.config.setFrequency(newFrequency);
+        chat.config.frequency = newFrequency;
         chat.triggerNotif("frequency");
     });
 
@@ -65,7 +64,9 @@ function addToDoListListeners(toDoList) {
     //add new task
     document.getElementById("submit-todo").addEventListener("click", function() {
         const newToDo = new ToDoItem(document.getElementById("new-todo-item").value);
-        toDoList.addNewItem(newToDo);
+				if (newToDo.task) {
+					toDoList.addNewItem(newToDo);
+				};
     });
 
     //complete a task
@@ -100,10 +101,9 @@ function addEndDayListener(chat) {
 
 function init() {
     const newChat = new Chat();
-    const userName = prompt("Hello! How should I call you?");
-    newChat.config.userName = userName ? userName : "buddy";
+    newChat.config.userName = prompt("Hello! How should I call you?") || "buddy";
     const helloMessage = new Message(`Nice to meet you, ${newChat.config.userName}!`);
-    helloMessage.display(Chat.ChatBoxDom);
+    helloMessage.display(Chat.DOM);
 
     const newToDoList = new ToDoList();
 
