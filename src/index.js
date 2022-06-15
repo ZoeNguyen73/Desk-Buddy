@@ -106,8 +106,7 @@ function addEndDayListener(chat) {
 
 function init() {
     const newChat = new Chat();
-    const userName = prompt("Hello! How should I call you?");
-    newChat.config.userName = userName ? userName : "buddy";
+    newChat.config.userName = prompt("Hello! How should I call you?") || 'buddy';
     const helloMessage = new Message(`Nice to meet you, ${newChat.config.userName}!`);
     helloMessage.display(Chat.ChatBoxDom);
 
