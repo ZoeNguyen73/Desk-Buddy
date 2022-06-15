@@ -1,5 +1,3 @@
-console.log("js file linked");
-
 import Chat from "./chat/chat.js"
 import Message from "./config/message.js";
 import {ToDoItem, ToDoList} from "./todo-list/todo-list.js";
@@ -22,14 +20,10 @@ function runClock() {
 
 function runChatInterval(chat, lastMsgTime) {
     const interval = chat.config.frequency;
-    // console.log(`Current frequency is ${interval}`);
-    // console.log(`Last msg time is ${lastMsgTime}`);
-    // console.log(`Current time is ${currentTime.getTime()}`);
-    // console.log(`The gap is ${currentTime.getTime() - lastMsgTime}`);
 
     //if toStop = true, return
     if (toStop(chat.config)) {
-        console.log("Time's up");
+        // console.log("Time's up");
         const endMessage = new Message(`It's the end of day~ Good bye!`);
         endMessage.display(Chat.ChatBoxDom);
         endMessage.scrollToBottom();

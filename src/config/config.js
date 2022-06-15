@@ -1,5 +1,3 @@
-// import Message from "./message.js";
-// import Event from "./event.js";
 import { eventsArray } from "./event.js";
 
 export default class Config {

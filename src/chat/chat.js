@@ -12,7 +12,6 @@ export default class Chat {
   triggerEvent() {
     (this.currentEvent === this.config.eventsArray.length - 1) ? this.currentEvent = 0 : this.currentEvent++;
     const newMessage = new EventMessage(this.config.eventsArray[this.currentEvent]);
-    // console.log(`The current event is ${this.currentEvent} and ${this.config.eventsArray[this.currentEvent]}`);
     newMessage.display(Chat.ChatBoxDom);
     newMessage.scrollToBottom();
   }
