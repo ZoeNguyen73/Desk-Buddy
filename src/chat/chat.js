@@ -1,25 +1,16 @@
-import Config from "../config/config.js"
-import { NotifMessage, EventMessage } from "../config/message.js";
+export default class ChatComponent {
+  #dom = document.querySelector(".chat-content");
 
-export default class Chat {
-  static DOM = document.querySelector(".chat-content");
-
-  constructor(config) {
-    this.config = config;
-    this.currentEvent = 0;
+  constructor() {
   }
 
-  triggerEvent() {
-    (this.currentEvent === this.config.events.length - 1) ? this.currentEvent = 0 : this.currentEvent++;
-    const newMessage = new EventMessage(this.config.events[this.currentEvent]);
-    newMessage.display(Chat.DOM);
-    newMessage.scrollToBottom();
+  display(domElement) {
+    this.#dom.append(domElement);
+    this.#scrollToBottom();
   }
 
-  triggerNotif(type) {
-    const newNotif = new NotifMessage(type, this.config);
-    newNotif.display(Chat.DOM);
-    newNotif.scrollToBottom();
+  #scrollToBottom() {
+    this.#dom.scrollTop = this.#dom.scrollHeight;
   }
 
 }

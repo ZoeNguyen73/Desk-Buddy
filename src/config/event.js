@@ -18,23 +18,27 @@ export class ClickEvent extends Event {
     this.#occurenceCount++;
   }
 
-  displayOptions(parentDom) {
-    const newUserInput = document.createElement("div");
-    newUserInput.setAttribute("class", "user-input");
-
-    Object.values(this.userOptions).forEach(option => {
-      const userOption = document.createElement("button");
-      userOption.innerText = option;
-
-      if(this.#eventListenerType.length > 0) {
-        newUserInput.addEventListener(this.#eventListenerType, this.listenerEvent());
-      };
-      
-      newUserInput.append(userOption);
-    });
-
-    parentDom.append(newUserInput);
+  getEventListenerType() {
+    return this.#eventListenerType;
   }
+
+  // displayOptions(parentDom) {
+  //   const newUserInput = document.createElement("div");
+  //   newUserInput.setAttribute("class", "user-input");
+
+  //   Object.values(this.userOptions).forEach(option => {
+  //     const userOption = document.createElement("button");
+  //     userOption.innerText = option;
+
+  //     if(this.#eventListenerType.length > 0) {
+  //       newUserInput.addEventListener(this.#eventListenerType, this.listenerEvent());
+  //     };
+      
+  //     newUserInput.append(userOption);
+  //   });
+
+  //   parentDom.append(newUserInput);
+  // }
 }
 
 export class ChooseEvent extends ClickEvent {
