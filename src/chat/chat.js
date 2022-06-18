@@ -4,8 +4,8 @@ import { NotifMessage, EventMessage } from "../config/message.js";
 export default class Chat {
   static DOM = document.querySelector(".chat-content");
 
-  constructor() {
-    this.config = new Config();
+  constructor(config) {
+    this.config = config;
     this.currentEvent = 0;
   }
 

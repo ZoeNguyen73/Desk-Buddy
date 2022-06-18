@@ -1,4 +1,5 @@
 import Chat from "./chat/chat.js"
+import Config from "./config/config.js";
 import Message from "./config/message.js";
 import {ToDoItem, ToDoList} from "./todo-list/todo-list.js";
 
@@ -100,7 +101,8 @@ function addEndDayListener(chat) {
 }
 
 function init() {
-    const newChat = new Chat();
+    const newConfig = new Config();
+    const newChat = new Chat(newConfig);
     newChat.config.userName = prompt("Hello! How should I call you?") || "buddy";
     const helloMessage = new Message(`Nice to meet you, ${newChat.config.userName}!`);
     helloMessage.display(Chat.DOM);
