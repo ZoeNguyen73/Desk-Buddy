@@ -1,5 +1,6 @@
 import Chat from "./chat/chat.js"
 import Message from "./config/message.js";
+import Spotify from "./spotify/spotify.js";
 import {ToDoItem, ToDoList} from "./todo-list/todo-list.js";
 
 let currentTime = undefined;
@@ -100,21 +101,23 @@ function addEndDayListener(chat) {
 }
 
 function init() {
-    const newChat = new Chat();
-    newChat.config.userName = prompt("Hello! How should I call you?") || "buddy";
-    const helloMessage = new Message(`Nice to meet you, ${newChat.config.userName}!`);
-    helloMessage.display(Chat.DOM);
+    // const newChat = new Chat();
+    // newChat.config.userName = prompt("Hello! How should I call you?") || "buddy";
+    // const helloMessage = new Message(`Nice to meet you, ${newChat.config.userName}!`);
+    // helloMessage.display(Chat.DOM);
 
-    const newToDoList = new ToDoList();
+    // const newToDoList = new ToDoList();
 
-    const lastMsgTime = new Date().getTime();
+    // const lastMsgTime = new Date().getTime();
 
-    addConfigListeners(newChat);
-    addGenerateMsgListener(newChat);
-    addEndDayListener(newChat);
-    addToDoListListeners(newToDoList);
-    runClock();
-    runChatInterval(newChat, lastMsgTime);
+    // addConfigListeners(newChat);
+    // addGenerateMsgListener(newChat);
+    // addEndDayListener(newChat);
+    // addToDoListListeners(newToDoList);
+    // runClock();
+    // runChatInterval(newChat, lastMsgTime);
+
+    const spotify = new Spotify('spotify-login-link');
 }
 
 init();
