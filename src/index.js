@@ -7,7 +7,6 @@ import {ToDoItem, ToDoList} from "./todo-list/todo-list.js";
 function init() {
   const config = new Config();
   const chatComponent = new ChatComponent();
-  const messageWithClickEvent = new MessageWithClickEvent();
   const timer = new Timer(config, chatComponent);
   timer.runClock();
   timer.start();

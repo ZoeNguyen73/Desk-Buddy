@@ -17,21 +17,24 @@ export class Message {
 
 export class MessageWithClickEvent {
   #clicks;
-  constructor(clicks=[]) {
+  constructor(messages, clicks=[]) {
+    this.messages = messages;
     this.#clicks = clicks;
-  }
-
-  render() {
-    const newMessage = document.createElement("div");
-    newMessage.setAttribute("class", "user-input");
-    newMessage.innerHTML = `
-      <button onclick="MessageWithClickEvent.onClick()">test</button>
-      <button onclick="MessageWithClickEvent.onClick()">test</button>
-    `;
-    return newMessage;
   }
 
   static onClick() {
     console.log("this was clicked");
   }
+
+  render() {
+    const newMessage = document.createElement("div");
+    newMessage.setAttribute("class", "user-input");
+    let str = "";
+    this.messages.forEach(message => {
+      str += `<button onclick="MessageWithClickEvent.onClick()">${message}</button>`;
+    });
+    newMessage.innerHTML = str;
+    return newMessage;
+  }
+
 }

@@ -1,8 +1,24 @@
-export default class Event {
-  constructor(type, message) {
-    this.type = type;
+// export default class Event {
+//   constructor(type, message) {
+//     this.type = type;
+//     this.message = message;
+//   }
+// }
+
+export class Event {
+  #eventListenerType = "click";
+
+  constructor(message) {
     this.message = message;
+    this.userResponses = [];
   }
+
+  populateUserResponses(responses) {
+    responses.forEach(response => {
+      this.userResponses.push(response);
+    })
+  };
+
 }
 
 export class ClickEvent extends Event {
@@ -41,33 +57,18 @@ export class ClickEvent extends Event {
   // }
 }
 
-export class ChooseEvent extends ClickEvent {
-  listenerEvent() {
-    // trigger meme or joke
-  }
-}
 
 /// create events
 
-const RandomMessage = new Event("randomMsg", "Hang in there!");
+const randomMessageEvent = new Event("Hang in there!");
 
-const Water = new ClickEvent("water", "Time for a water break!",
-  {
-    1: "Yes, I am rehydrated!"
-  }
-);
+const waterEvent = new Event("Time for a water break!");
+waterEvent.populateUserResponses(["Yes, I am rehydrated!"]);
 
-const Stretch = new ClickEvent("stretch", "How about a 5-min stretch?",
-  {
-    1: "Done! Feeling much better now"
-  }
-);
+const stretchEvent = new Event("How about a 5-min stretch?");
+stretchEvent.populateUserResponses(["Done! Feeling much better now"]);
 
-const Break = new ChooseEvent("break", "Wanna see something funny?",
-  {
-    meme: "A random meme",
-    joke: "A random joke"
-  }
-);
+const breakEvent = new Event("Wanna see something funny?");
+breakEvent.populateUserResponses(["A random meme", "A random joke"]);
 
-export const events = [RandomMessage, Water, Stretch, Break];
+export const events = [randomMessageEvent, waterEvent, stretchEvent, breakEvent];
