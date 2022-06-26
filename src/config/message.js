@@ -29,9 +29,8 @@ export class Notif {
 
 export class MessageWithClickEvent {
   #clicks;
-  constructor(messages, clicks=[]) {
+  constructor(messages) {
     this.messages = messages;
-    this.#clicks = clicks;
   }
 
   static onClick() {
@@ -39,11 +38,16 @@ export class MessageWithClickEvent {
   }
 
   render() {
+    const responsesArr = Object.keys(this.messages);
     const newMessage = document.createElement("div");
     newMessage.setAttribute("class", "user-input");
     let str = "";
-    this.messages.forEach(message => {
-      str += `<button onclick="eval('MessageWithClickEvent.onClick()')">${message}</button>`;
+    responsesArr.forEach(response => {
+      str += `
+        <button id="haha" data-class-path="events/clickevent.js" data-class-method="${this.messages[response]}">
+        ${response}
+        </button>
+      `;
     });
     newMessage.innerHTML = str;
     return newMessage;

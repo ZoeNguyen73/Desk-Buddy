@@ -1,4 +1,4 @@
-import { events } from "./event.js";
+import { events } from "../events/event.js";
 import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {

@@ -4,6 +4,7 @@ import {Message, MessageWithClickEvent} from "./config/message.js";
 import {Timer, TimeComponent} from "./config/timer.js";
 import {ToDoItem, ToDoList} from "./todo-list/todo-list.js";
 import Buttons from "./chat/buttons.js";
+import ClickEvent from "./events/clickevent.js";
 
 function init() {
   
@@ -17,6 +18,7 @@ function init() {
   const config = new Config(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
   const timer = new Timer(config, chatComponent);
   const buttons = new Buttons(config, chatComponent, timer, pokeButtonDOM, endDayButtonDOM);
+
   timer.runClock();
   timer.start();
 }
