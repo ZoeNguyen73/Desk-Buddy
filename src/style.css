@@ -188,3 +188,10 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.user-buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 5px;
+    justify-content: center;
+}

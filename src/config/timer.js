@@ -47,7 +47,7 @@ export class Timer {
 	start() {
 		const endTime = this.#config.endTime; // string "hh:mm:ss"
 
-		if (endTime <= this.#getCurrentTime()) {
+		if (endTime <= this.getCurrentTime()) {
 			const endDayMsg = new Message("It's the end of day~ goodbye!", this.#config.buddyProfilePicUrl);
 			this.#chatComponent.display(endDayMsg.render());
 			return;
@@ -57,8 +57,12 @@ export class Timer {
 		const currentTimeInMs = (new Date()).getTime();
 		const duration = currentTimeInMs - this.#lastMsgTime;
 		if (duration >= frequencyInMs) {
-			this.#sendMessage();
-			this.#sendMessageWithClickEvent();
+			if(this.#currentMessageIndex >= this.#config.getMessagesLength()) {
+				this.#currentMessageIndex = 0;
+			};
+			const msgIndex = this.#currentMessageIndex++;
+			this.#sendMessage(msgIndex);
+			this.#sendMessageWithClickEvent(msgIndex);
 			this.#lastMsgTime = currentTimeInMs;
 		};
 
@@ -67,26 +71,23 @@ export class Timer {
 		}, 1000);
 	}
 
-	#sendMessage() {
-		if(this.#currentMessageIndex >= this.#config.getMessagesLength()) {
-      this.#currentMessageIndex = 0;
-    }
-    const msgIndex = this.#currentMessageIndex++;
-    const message = this.#config.getMessage(msgIndex);
+	#sendMessage(index) {
+    const message = this.#config.getMessage(index);
     const messageDom = message.render();
     this.#chatComponent.display(messageDom);
   }
 
-	#sendMessageWithClickEvent() {
-		const messageDom = (new MessageWithClickEvent(this.#config.getResponseMessages(this.#currentMessageIndex - 1))).render();
+	#sendMessageWithClickEvent(index) {
+		const messageDom = (this.#config.getResponseMessages(index)).render();
 		this.#chatComponent.display(messageDom);
 	}
 	
-	#getCurrentTime() {
+	getCurrentTime() {
 		//get current time and return as string "hh:mm:ss"
 		const currentHour = (new Date()).getHours().toString().padStart(2, "0");
 		const currentMinute = (new Date()).getMinutes().toString().padStart(2, "0");
-		return `${currentHour}:${currentMinute}:59`;
+		const currentSeconds = (new Date()).getSeconds().toString().padStart(2, "0");
+		return `${currentHour}:${currentMinute}:${currentSeconds}`;
 	}
 }
 
