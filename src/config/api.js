@@ -1,3 +1,64 @@
+class RandomJokeApi {
+  #name;
+  #url;
+  #options;
+
+  constructor() {
+    this.#name = "Random Joke";
+    this.#url = "https://random-stuff-api.p.rapidapi.com/joke";
+    this.#options = {
+      method: "GET",
+      params: {
+        blacklist: "dark, sex"
+      },
+      headers: {
+        Authorization: "zp8cS9WMnvzU",
+        "X-RapidAPI-Key": "5ff2da6b38msh35c4993553a99d2p11ec64jsn39e47a56a104",
+        "X-RapidAPI-Host": "random-stuff-api.p.rapidapi.com"
+      }
+    }
+  }
+
+  async getRandomJoke() {
+    try {
+      const response = await fetch(this.#url, this.#options);
+      const data = await response.json();
+      return data.joke;
+    } catch(error) {
+      console.log(`${error}`);
+    };
+  }
+}
+
+class RandomMemeApi {
+  #name;
+  #url;
+  #options;
+
+  constructor() {
+    this.#name = "Random Meme";
+    this.#url = "https://random-stuff-api.p.rapidapi.com/reddit/FetchSubredditPost?subreddit=memes&searchType=hot";
+    this.#options = {
+      method: "GET",
+      headers: {
+        Authorization: "zp8cS9WMnvzU",
+        "X-RapidAPI-Key": "5ff2da6b38msh35c4993553a99d2p11ec64jsn39e47a56a104",
+        "X-RapidAPI-Host": "random-stuff-api.p.rapidapi.com"
+      }
+    }
+  }
+
+  async getRandomMemeUrl() {
+    try {
+      const response = await fetch(this.#url, this.#options);
+      const data = await response.json();
+      return data.image;
+    } catch(error) {
+      console.log(`${error}`);
+    };
+  }
+}
+
 class QuotesApi {
   #name;
   #url;
@@ -41,3 +102,5 @@ class QuotesApi {
 }
 
 export const quotesApi = new QuotesApi();
+export const randomJokeApi = new RandomJokeApi();
+export const randomMemeApi = new RandomMemeApi();

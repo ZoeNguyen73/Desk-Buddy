@@ -5,6 +5,11 @@ export default class ChatComponent {
     this.addClickEventListener();
   }
 
+  static displayStatic(domElement) {
+    document.querySelector(".chat-content").append(domElement);
+    this.#scrollToBottom();
+  }
+
   display(domElement) {
     this.#dom.append(domElement);
     this.#scrollToBottom();
