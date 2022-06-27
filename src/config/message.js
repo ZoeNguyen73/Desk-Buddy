@@ -28,13 +28,8 @@ export class Notif {
 }
 
 export class MessageWithClickEvent {
-  #clicks;
   constructor(messages) {
     this.messages = messages;
-  }
-
-  static onClick() {
-    console.log("this was clicked");
   }
 
   render() {

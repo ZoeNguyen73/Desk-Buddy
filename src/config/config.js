@@ -49,12 +49,12 @@ export default class Config {
 
   updateConfig(type, value) {
     switch(type) {
-      case "frequency" :
+      case "frequency":
         this.frequencyInMs = value;
         break;
-      case "endTime" :
+      case "endTime":
         this.endTime = value;
-      default :
+      default:
         break;
     }
     this.#renderConfigChange(type);

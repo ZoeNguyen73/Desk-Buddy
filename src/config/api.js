@@ -76,7 +76,6 @@ class QuotesApi {
       const response = await fetch(this.#url);
       const data = await response.json();
       localStorage.setItem("quotes", JSON.stringify(data));
-      console.log(localStorage.getItem("quotes"));
     } catch(error) {
       console.log(`${error}`);
     };
