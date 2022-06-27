@@ -57,6 +57,7 @@ h4, p, li {
     flex: 1 0 0;
     align-items: center;
     display: flex;
+    flex-flow: row wrap;
 }
 
 .user-input {
@@ -202,4 +203,12 @@ input:checked + .slider:before {
 
 .meme-pic {
     max-width: 90%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.highlighted {
+    color: blue;
 }

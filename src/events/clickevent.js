@@ -49,7 +49,10 @@ export default class ClickEvent {
   async displayJoke() {
     try {
       const newJoke = await randomJokeApi.getRandomJoke();
-      const newMsg = new Message(newJoke, "./assets/images/buddy-profile-pic-cat.png");
+      const newMsg = new Message(
+        `Here's a joke for you: <i>${newJoke}</i>`, 
+        "./assets/images/buddy-profile-pic-cat.png"
+      );
       ClickEvent.dom.append(newMsg.render());
       ClickEvent.dom.scrollTop = ClickEvent.dom.scrollHeight;
     } catch(error) {
@@ -72,7 +75,10 @@ export default class ClickEvent {
   async displayMeme() {
     try {
       const newMeme = await randomMemeApi.getRandomMemeUrl();
-      const newMsg = new Message(`<img class="meme-pic" src="${newMeme}">`, "./assets/images/buddy-profile-pic-cat.png");
+      const newMsg = new Message(
+        `LOL at this: <img class="meme-pic" src="${newMeme}">`, 
+        "./assets/images/buddy-profile-pic-cat.png"
+      );
       ClickEvent.dom.append(newMsg.render());
       ClickEvent.dom.scrollTop = ClickEvent.dom.scrollHeight;
     } catch(error) {
@@ -81,3 +87,5 @@ export default class ClickEvent {
   }
 
 }
+
+export const clickEvent = new ClickEvent();

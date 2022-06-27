@@ -1,5 +1,6 @@
 import { Message } from "../config/message.js";
 import Config from "../config/config.js";
+import { clickEvent } from "../events/clickevent.js";
 
 export default class Buttons {
   #config;
@@ -20,7 +21,7 @@ export default class Buttons {
 
     pokeButtonDOM.addEventListener("click", () => {
       console.log("poke button clicked");
-      //function to trigger meme/joke/random
+      Math.random() > 0.5 ? clickEvent.jokeClickEvent() : clickEvent.memeClickEvent();
     });
   }
 }
