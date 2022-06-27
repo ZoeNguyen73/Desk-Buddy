@@ -14,6 +14,7 @@ function init() {
   const pokeButtonDOM = document.getElementById("poke-me");
   const endDayButtonDOM = document.getElementById("end-the-day");
 
+  const clickEvent = new ClickEvent();
   const chatComponent = new ChatComponent();
   const config = new Config(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
   const timer = new Timer(config, chatComponent);

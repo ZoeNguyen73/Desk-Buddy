@@ -7,7 +7,7 @@ export class Timer {
   #chatComponent;
 	#timeComponent = new TimeComponent();
 	#lastMsgTime = (new Date()).getTime();
-  #currentMessageIndex = 0;
+  #currentEventIndex = 0;
 
   constructor(config, chatComponent) {
     this.#config = config;
@@ -57,12 +57,13 @@ export class Timer {
 		const currentTimeInMs = (new Date()).getTime();
 		const duration = currentTimeInMs - this.#lastMsgTime;
 		if (duration >= frequencyInMs) {
-			if(this.#currentMessageIndex >= this.#config.getMessagesLength()) {
-				this.#currentMessageIndex = 0;
+			if(this.#currentEventIndex >= this.#config.getEventsLength()) {
+				this.#currentEventIndex = 0;
 			};
-			const msgIndex = this.#currentMessageIndex++;
-			this.#sendMessage(msgIndex);
-			this.#sendMessageWithClickEvent(msgIndex);
+			const eventIndex = this.#currentEventIndex++;
+			this.#sendMessage(eventIndex);
+			this.#sendMessageWithClickEvent(eventIndex);
+			this.updateEventMessage();
 			this.#lastMsgTime = currentTimeInMs;
 		};
 
@@ -89,6 +90,15 @@ export class Timer {
 		const currentSeconds = (new Date()).getSeconds().toString().padStart(2, "0");
 		return `${currentHour}:${currentMinute}:${currentSeconds}`;
 	}
+
+	updateEventMessage() {
+		const currentEventType = this.#config.events[this.#currentEventIndex - 1].type;
+		console.log(currentEventType);
+		if (currentEventType === "Random quote") {
+			this.#config.events[this.#currentEventIndex - 1].updateMessage();
+		};
+	}
+
 }
 
 export class TimeComponent {

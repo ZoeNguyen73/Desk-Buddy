@@ -2,46 +2,36 @@ import { events } from "../events/event.js";
 import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {
-  #messages = [];
-  #responseMessages = [];
-  #events = events;
   #chatComponent;
 
   constructor(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59", userName = "buddy") {
+    this.events = events;
     this.buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
     this.frequencyInMs = frequencyInMs;
     this.endTime = endTime;
-    this.#seedAllMessages();
     this.#addConfigChangeListeners(frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
     this.locale = navigator.languages && navigator.languages.length
       ? navigator.languages[0]
       : navigator.language;
     this.dateTimeDisplayOption = { weekday: "long", day: "numeric", month: "long"};
     this.#chatComponent = chatComponent;
+    this.#resetAllEvents();
   }
 
   getMessage(index) {
-    return this.#messages[index];
+    const currentEvent = this.events[index];
+    const message = new Message(currentEvent.message, this.buddyProfilePicUrl);
+    return message;
   }
 
   getResponseMessages(index) {
-    return this.#responseMessages[index];
+    const currentEvent = this.events[index];
+    const message = new MessageWithClickEvent(currentEvent.userResponses);
+    return message;
   }
 
-  getMessagesLength() {
-    return this.#messages.length;
-  }
-
-  #seedAllMessages() {
-    // let message = new Message("haha", this.buddyProfilePicUrl);
-    // this.#messages.push(message);
-    let picUrl = this.buddyProfilePicUrl;
-    this.#events.forEach(event => {
-      const message = new Message(event.message, picUrl);
-      this.#messages.push(message);
-      const responseMessage = new MessageWithClickEvent(event.userResponses);
-      this.#responseMessages.push(responseMessage);  
-    });
+  getEventsLength() {
+    return this.events.length;
   }
 
   #addConfigChangeListeners(frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM) {
@@ -101,6 +91,12 @@ export default class Config {
     endHour = endHour.toString().padStart(2, "0");
 
     return `${endHour}:${endMinute} ${session}`;
+  }
+
+  #resetAllEvents() {
+    this.events.forEach(event => {
+      event.resetEvent();
+    });
   }
 }
 
