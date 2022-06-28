@@ -1,25 +1,38 @@
-import Config from "../config/config.js"
-import { NotifMessage, EventMessage } from "../config/message.js";
-
-export default class Chat {
-  static DOM = document.querySelector(".chat-content");
+export default class ChatComponent {
+  #dom = document.querySelector(".chat-content");
 
   constructor() {
-    this.config = new Config();
-    this.currentEvent = 0;
+    this.addClickEventListener();
   }
 
-  triggerEvent() {
-    (this.currentEvent === this.config.events.length - 1) ? this.currentEvent = 0 : this.currentEvent++;
-    const newMessage = new EventMessage(this.config.events[this.currentEvent]);
-    newMessage.display(Chat.DOM);
-    newMessage.scrollToBottom();
+  static displayStatic(domElement) {
+    document.querySelector(".chat-content").append(domElement);
+    this.#scrollToBottom();
   }
 
-  triggerNotif(type) {
-    const newNotif = new NotifMessage(type, this.config);
-    newNotif.display(Chat.DOM);
-    newNotif.scrollToBottom();
+  display(domElement) {
+    this.#dom.append(domElement);
+    this.#scrollToBottom();
   }
 
+  #scrollToBottom() {
+    this.#dom.scrollTop = this.#dom.scrollHeight;
+  }
+
+  async processClassMethod(classPath, classMethod) {
+    const { default: ClassInstance } = await import(`../${classPath}`);
+    const classInstance = new ClassInstance();
+    Reflect.getPrototypeOf(classInstance)[classMethod]?.()
+  }
+
+  addClickEventListener() {
+    this.#dom.addEventListener("click", (evnt) => {
+      const { classPath, classMethod } = evnt.target.dataset;
+      console.log(classPath);
+      console.log(classMethod);
+      if(classPath && classMethod) {
+        this.processClassMethod(classPath, classMethod)
+      }
+    });
+  }
 }

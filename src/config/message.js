@@ -1,86 +1,51 @@
-import Config from "./config.js";
-
-export default class Message {
-  constructor(message) {
-    this.msg = message;
+export class Message {
+  constructor(text, picUrl) {
+    this.text = text;
+    this.picUrl = picUrl;
   }
 
-  display(parentDom) {
+  render() {
     const newMessage = document.createElement("div");
     newMessage.setAttribute("class", "buddy-message");
     newMessage.innerHTML = `
-      <img src="${Config.BuddyProfilePicSrc}" class="buddy-chat-profile-pic" alt="buddy profile pic">
-      <p class="buddy-message-content">${this.msg}</p>
+      <img src="${this.picUrl}" class="buddy-chat-profile-pic" alt="buddy profile pic">
+      <p class="buddy-message-content">${this.text}</p>
     `;
-    parentDom.append(newMessage);
-  }
-
-  scrollToBottom() {
-    const chatContainerDom = document.querySelector(".chat-content");
-    chatContainerDom.scrollTop = chatContainerDom.scrollHeight;
+    return newMessage;
   }
 }
 
-export class EventMessage extends Message {
-  #event;
-  
-  constructor(event) {
-    super(event.message);
-    this.#event = event;
+export class Notif {
+  constructor() {
   }
 
-  display(parentDom) {
-    super.display(parentDom);
-
-    if (!this.#event.userOptions) {
-      return
-    };
-
-    this.#event.displayOptions(parentDom);
-  }
-}
-
-export class NotifMessage extends Message {
-  #type;
-  #config;
-  constructor(type, config) {
-    super();
-    this.#type = type;
-    this.#config = config;
-  }
-
-  display(parentDom) {
+  render(msg) {
     const newNotif = document.createElement("div");
     newNotif.setAttribute("class", "notif");
+    newNotif.innerHTML = msg;
+    return newNotif;
+  }
+}
 
-    switch(this.#type) {
-      case "frequency":
-        newNotif.innerText = this.#frequencyMsg();
-        break;
-      case "endTime":
-        newNotif.innerText = this.#endTimeMsg();
-        break;
-      default:
-    }
-
-    parentDom.append(newNotif);
+export class MessageWithClickEvent {
+  constructor(messages) {
+    this.messages = messages;
   }
 
-  #frequencyMsg() {
-    return `Frequency has been changed to every ${this.#config.frequency / 1000} seconds`;
+  render() {
+    const responsesArr = Object.keys(this.messages);
+    const newMessage = document.createElement("div");
+    newMessage.setAttribute("class", "user-input");
+    let str = "";
+    responsesArr.forEach(response => {
+      str += `
+        <button id="haha" data-class-path="events/clickevent.js" data-class-method="${this.messages[response]}">
+        ${response}
+        </button>
+      `;
+    });
+    newMessage.innerHTML = str;
+    return newMessage;
   }
 
-  #endTimeMsg() {
-    let endHour = this.#config.endHour;
-    const endMinute = this.#config.endMinute.toString().padStart(2, "0");
-    let session = "AM";
-
-    if (endHour > 12) {
-      endHour -= 12;
-      session = "PM";
-    };
-
-    endHour = endHour.toString().padStart(2, "0");
-    return `End time has been changed to ${endHour}:${endMinute} ${session}`;
-  }
 }
