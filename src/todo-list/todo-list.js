@@ -12,8 +12,8 @@ export class ToDoItem {
 
 export class ToDoList {
   #toDoListComponent = new ToDoListComponent();
-  static chatComponent = document.querySelector(".chat-content");
-  static taskArray =[]
+  #chatComponent = document.querySelector(".chat-content");
+  #taskArray =[]
   
   constructor() {
     this.isFullyCompleted = false;
@@ -41,59 +41,14 @@ export class ToDoList {
     if (text === "") {
       return
     };
-    const id = ToDoList.taskArray.length;
+    const id = this.#taskArray.length;
     const newItem = new ToDoItem(text, id);
-    ToDoList.taskArray.push(newItem);
-    this.#toDoListComponent.display(newItem);
+    this.#taskArray.push(newItem);
+    const newDom = this.#createDom(newItem);
+    this.#toDoListComponent.display(newDom);
   }
 
-  static updateTaskStatus(id, newStatus) {
-    ToDoList.taskArray[id].isDone = newStatus;
-    console.log(JSON.stringify(ToDoList.taskArray));
-    if (newStatus) {
-      ToDoList.completeTaskMessage();
-    };
-  }
-
-  static completeTaskMessage() {
-    let text = "";
-    const count = ToDoList.getNumberOfTasksDone();
-    if (ToDoList.isFullyCompleted()) {
-      text = `Congrats! You've done all that you've set out to do today :D`;
-    } else {
-      text = `Yay, you've completed ${count} ${count > 1 ? "tasks" : "task"} so far!`;
-    };
-    const message = new Message(text, Config.buddyPicUrl);
-    ToDoList.chatComponent.append(message.render());
-    ToDoList.chatComponent.scrollTop = ToDoList.chatComponent.scrollHeight;
-  }
-
-  static isFullyCompleted() {
-    for (let i = 0, j = ToDoList.taskArray.length; i < j; i++) {
-      if (!ToDoList.taskArray[i].isDone) {
-        return false;
-      };
-    };
-    return true;
-  }
-
-  static getNumberOfTasksDone() {
-    let count = 0;
-    for (let i = 0, j = ToDoList.taskArray.length; i < j; i++) {
-      if (ToDoList.taskArray[i].isDone) {
-        count++;
-      };
-    };
-    return count;
-  }
-}
-
-export class ToDoListComponent {
-  #dom = document.querySelector(".list");
-  constructor() {
-  }
-
-  display(item) {
+  #createDom(item) {
     const newTaskDom = document.createElement("li");
     newTaskDom.setAttribute("class", "todo-item");
     newTaskDom.setAttribute("id", item.id);
@@ -101,11 +56,11 @@ export class ToDoListComponent {
       <span contenteditable="true">${item.task}</span>
       <label class="switch">
           <input type="checkbox" id>
-          <span class="slider round" id="${item.id}"></span>
+          <span class="slider round"></span>
       </label>
     `;
     this.#addEventListener(newTaskDom);
-    this.#dom.append(newTaskDom);
+    return newTaskDom;
   }
 
   #addEventListener(dom) {
@@ -116,7 +71,58 @@ export class ToDoListComponent {
       const target = event.currentTarget;
       const id = target.id * 1;
       const checkBox = target.querySelector("input");
-      ToDoList.updateTaskStatus(id, checkBox.checked);
+      this.#updateTaskStatus(id, checkBox.checked).bind(this);
     });
+  }
+
+  #updateTaskStatus(id, newStatus) {
+    this.#taskArray[id].isDone = newStatus;
+    console.log(JSON.stringify(this.#taskArray));
+    if (newStatus) {
+      this.#completeTaskMessage();
+    };
+  }
+
+  #completeTaskMessage() {
+    let text = "";
+    const count = this.#getNumberOfTasksDone();
+    if (this.#isFullyCompleted()) {
+      text = `Congrats! You've done all that you've set out to do today :D`;
+    } else {
+      text = `Yay, you've completed ${count} ${count > 1 ? "tasks" : "task"} so far!`;
+    };
+    const message = new Message(text, Config.buddyPicUrl);
+    this.#chatComponent.append(message.render());
+    this.#chatComponent.scrollTop = this.#chatComponent.scrollHeight;
+  }
+
+  #isFullyCompleted() {
+    for (let i = 0, j = this.#taskArray.length; i < j; i++) {
+      if (!this.#taskArray[i].isDone) {
+        return false;
+      };
+    };
+    return true;
+  }
+
+  #getNumberOfTasksDone() {
+    let count = 0;
+    for (let i = 0, j = this.#taskArray.length; i < j; i++) {
+      if (this.#taskArray[i].isDone) {
+        count++;
+      };
+    };
+    return count;
+  }
+
+}
+
+export class ToDoListComponent {
+  #dom = document.querySelector(".list");
+  constructor() {
+  }
+
+  display(domElement) {
+    this.#dom.append(domElement);
   }
 }
