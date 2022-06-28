@@ -11,13 +11,11 @@ function init() {
   const frequencyDOM = document.getElementById("config-frequency");
   const endTimeSubmitDOM = document.getElementById("submit-end-time");
   const endTimeEntryDOM = document.getElementById("end-time-input");
-  const pokeButtonDOM = document.getElementById("poke-me");
-  const endDayButtonDOM = document.getElementById("end-the-day");
 
   const chatComponent = new ChatComponent();
   const config = new Config(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
   const timer = new Timer(config, chatComponent);
-  const buttons = new Buttons(config, chatComponent, timer, pokeButtonDOM, endDayButtonDOM);
+  const buttons = new Buttons(config, timer);
 
   timer.runClock();
   timer.start();

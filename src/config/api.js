@@ -9,7 +9,7 @@ class RandomJokeApi {
     this.#options = {
       method: "GET",
       params: {
-        blacklist: "dark, sex, insults, racist"
+        blacklist: "dark, sex, insults, racist, rude"
       },
       headers: {
         Authorization: "zp8cS9WMnvzU",
@@ -37,7 +37,7 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://random-stuff-api.p.rapidapi.com/reddit/FetchSubredditPost?subreddit=memes&searchType=hot";
+    this.#url = "https://random-stuff-api.p.rapidapi.com/reddit/FetchSubredditPost?subreddit=memes&searchType=rising";
     this.#options = {
       method: "GET",
       headers: {

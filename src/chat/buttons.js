@@ -1,26 +1,25 @@
-import { Message } from "../config/message.js";
-import Config from "../config/config.js";
 import { clickEvent } from "../events/clickevent.js";
 
 export default class Buttons {
   #config;
-  #chatComponent;
+  #doms = {
+    pokeButton: document.getElementById("poke-me"),
+    endDayButton: document.getElementById("end-the-day")
+  };
   #timer;
-  constructor(config, chatComponent, timer, pokeButtonDOM, endDayButtonDOM) {
+  constructor(config, timer) {
     this.#config = config;
-    this.#chatComponent = chatComponent;
     this.#timer = timer;
-    this.#addEventListener(pokeButtonDOM, endDayButtonDOM);
+    this.#addEventListener();
   }
 
-  #addEventListener(pokeButtonDOM, endDayButtonDOM) {
-    endDayButtonDOM.addEventListener("click", () => {
+  #addEventListener() {
+    this.#doms.endDayButton.addEventListener("click", () => {
       const newEndTime = this.#timer.getCurrentTime();
       this.#config.updateConfig("endTime", newEndTime);
     });
 
-    pokeButtonDOM.addEventListener("click", () => {
-      console.log("poke button clicked");
+    this.#doms.pokeButton.addEventListener("click", () => {
       Math.random() > 0.5 ? clickEvent.jokeClickEvent() : clickEvent.memeClickEvent();
     });
   }
