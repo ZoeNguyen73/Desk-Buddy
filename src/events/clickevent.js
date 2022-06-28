@@ -2,6 +2,7 @@ import { events } from "./event.js";
 import { randomJokeApi, randomMemeApi } from "../config/api.js";
 import { Message } from "../config/message.js";
 import { summaryComponent } from "../summary/summary.js";
+import Config from "../config/config.js";
 
 export default class ClickEvent {
   static events = events;
@@ -51,7 +52,7 @@ export default class ClickEvent {
       const newJoke = await randomJokeApi.getRandomJoke();
       const newMsg = new Message(
         `Here's a joke for you: <i>${newJoke}</i>`, 
-        "./assets/images/buddy-profile-pic-cat.png"
+        Config.buddyPicUrl
       );
       ClickEvent.dom.append(newMsg.render());
       ClickEvent.dom.scrollTop = ClickEvent.dom.scrollHeight;
@@ -77,7 +78,7 @@ export default class ClickEvent {
       const newMeme = await randomMemeApi.getRandomMemeUrl();
       const newMsg = new Message(
         `LOL at this: <img class="meme-pic" src="${newMeme}">`, 
-        "./assets/images/buddy-profile-pic-cat.png"
+        Config.buddyPicUrl
       );
       ClickEvent.dom.append(newMsg.render());
       ClickEvent.dom.scrollTop = ClickEvent.dom.scrollHeight;
