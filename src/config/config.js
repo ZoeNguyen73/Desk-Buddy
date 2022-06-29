@@ -53,7 +53,7 @@ export default class Config {
     })
     // end time change
     endTimeSubmitDOM.addEventListener("click", () => {
-      const endTimeInput = `${endTimeEntryDOM.value}:59`;
+      const endTimeInput = `${endTimeEntryDOM.value}:00`;
       this.updateConfig("endTime", endTimeInput);
     });
   }

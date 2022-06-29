@@ -48,7 +48,9 @@ export class Timer {
 		const endTime = this.#config.endTime; // string "hh:mm:ss"
 
 		if (endTime <= this.getCurrentTime()) {
-			const endDayMsg = new Message("It's the end of day~ goodbye!", this.#config.buddyProfilePicUrl);
+			const endDayMsg = new Message(
+				`Hey ${this.#config.userName}, it's the end of day. Great work - you've accomplished a lot today! Get a good rest and see ya 👋`, 
+				Config.buddyPicUrl);
 			this.#chatComponent.display(endDayMsg.render());
 			return;
 		};
