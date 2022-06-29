@@ -7,13 +7,16 @@ import Buttons from "./chat/buttons.js";
 import ClickEvent from "./events/clickevent.js";
 
 function init() {
-  
+  const userName = prompt("Hello! How should I call you?") || "buddy";
+  document.getElementById("username").innerText = userName;
+
   const frequencyDOM = document.getElementById("config-frequency");
   const endTimeSubmitDOM = document.getElementById("submit-end-time");
   const endTimeEntryDOM = document.getElementById("end-time-input");
 
+  const config = new Config(userName, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
   const chatComponent = new ChatComponent();
-  const config = new Config(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
+  config.assignChatComponent(chatComponent);
   const toDoList = new ToDoList(config);
   const timer = new Timer(config, chatComponent);
   const buttons = new Buttons(config, timer);

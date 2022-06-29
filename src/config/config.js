@@ -2,11 +2,13 @@ import { events } from "../events/event.js";
 import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {
+  #greetings = ["Hey", "Yo", "Holla", "Hi"];
   #chatComponent;
 
-  constructor(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59", userName = "buddy") {
-    this.events = events;
+  constructor(userName, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
+    this.userName = userName;
     this.buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
+    this.events = events;
     this.frequencyInMs = frequencyInMs;
     this.endTime = endTime;
     this.#addConfigChangeListeners(frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
@@ -14,13 +16,24 @@ export default class Config {
       ? navigator.languages[0]
       : navigator.language;
     this.dateTimeDisplayOption = { weekday: "long", day: "numeric", month: "long"};
-    this.#chatComponent = chatComponent;
     this.#resetAllEvents();
+  }
+
+  assignChatComponent(chatComponent) {
+    this.#chatComponent = chatComponent;
+  }
+
+  #getGreeting() {
+    if (Math.random() > 0.5) {
+      return ""
+    };
+    const id = Math.floor(Math.random() * this.#greetings.length);
+    return `${this.#greetings[id]} ${this.userName}!`;
   }
 
   getMessage(index) {
     const currentEvent = this.events[index];
-    const message = new Message(currentEvent.message, this.buddyProfilePicUrl);
+    const message = new Message(`${this.#getGreeting()} ${currentEvent.message}`, this.buddyProfilePicUrl);
     return message;
   }
 
@@ -42,7 +55,7 @@ export default class Config {
     })
     // end time change
     endTimeSubmitDOM.addEventListener("click", () => {
-      const endTimeInput = `${endTimeEntryDOM.value}:59`;
+      const endTimeInput = `${endTimeEntryDOM.value}:00`;
       this.updateConfig("endTime", endTimeInput);
     });
   }

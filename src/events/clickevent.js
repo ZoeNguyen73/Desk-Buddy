@@ -9,6 +9,7 @@ export default class ClickEvent {
   static randomJokeApi = randomJokeApi;
   static dom = document.querySelector(".chat-content");
   static summaryComponent = summaryComponent;
+  static buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
 
   constructor() {
   }
@@ -51,8 +52,8 @@ export default class ClickEvent {
     try {
       const newJoke = await randomJokeApi.getRandomJoke();
       const newMsg = new Message(
-        `Here's a joke for you: <i>${newJoke}</i>`, 
-        Config.buddyPicUrl
+        `Alright, here's a little joke for you: <i>${newJoke}</i>`, 
+        ClickEvent.buddyProfilePicUrl
       );
       ClickEvent.dom.append(newMsg.render());
       ClickEvent.dom.scrollTop = ClickEvent.dom.scrollHeight;
@@ -78,7 +79,7 @@ export default class ClickEvent {
       const newMeme = await randomMemeApi.getRandomMemeUrl();
       const newMsg = new Message(
         `LOL at this: <img class="meme-pic" src="${newMeme}">`, 
-        Config.buddyPicUrl
+        ClickEvent.buddyProfilePicUrl
       );
       ClickEvent.dom.append(newMsg.render());
       ClickEvent.dom.scrollTop = ClickEvent.dom.scrollHeight;
