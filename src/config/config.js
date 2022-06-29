@@ -3,12 +3,13 @@ import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {
   static buddyPicUrl = "./assets/images/buddy-profile-pic-cat.png";
+  #greetings = ["Hey", "Yo", "Holla", "Hi"];
   
   #chatComponent;
 
-  constructor(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59", userName = "buddy") {
+  constructor(userName, chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
+    this.userName = userName;
     this.events = events;
-    this.buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
     this.frequencyInMs = frequencyInMs;
     this.endTime = endTime;
     this.#addConfigChangeListeners(frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
@@ -20,9 +21,17 @@ export default class Config {
     this.#resetAllEvents();
   }
 
+  #getGreeting() {
+    if (Math.random() > 0.5) {
+      return ""
+    };
+    const id = Math.floor(Math.random() * this.#greetings.length);
+    return `${this.#greetings[id]} ${this.userName}!`;
+  }
+
   getMessage(index) {
     const currentEvent = this.events[index];
-    const message = new Message(currentEvent.message, this.buddyProfilePicUrl);
+    const message = new Message(`${this.#getGreeting()} ${currentEvent.message}`, Config.buddyPicUrl);
     return message;
   }
 
