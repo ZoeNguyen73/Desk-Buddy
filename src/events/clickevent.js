@@ -51,7 +51,7 @@ export default class ClickEvent {
     try {
       const newJoke = await randomJokeApi.getRandomJoke();
       const newMsg = new Message(
-        `Here's a joke for you: <i>${newJoke}</i>`, 
+        `Alright, here's a little joke for you: <i>${newJoke}</i>`, 
         Config.buddyPicUrl
       );
       ClickEvent.dom.append(newMsg.render());

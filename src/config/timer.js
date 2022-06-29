@@ -93,7 +93,7 @@ export class Timer {
 
 	updateEventMessage() {
 		const currentEventType = this.#config.events[this.#currentEventIndex - 1].type;
-		if (currentEventType === "Random quote") {
+		if (currentEventType.includes("Random")) {
 			this.#config.events[this.#currentEventIndex - 1].updateMessage();
 		};
 	}
