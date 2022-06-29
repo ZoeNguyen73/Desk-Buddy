@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-h4, p, li, select {
+h4, h5, p, li, select {
   margin-bottom: 0;
 }
 
@@ -11,15 +11,31 @@ h4, p, li, select {
   margin: 0;
 }
 
-.chatbox, .todo-list, .day-summary {
+.chatbox, .todo-list, .day-summary, .header {
   border: 1px solid lightgray;
   border-radius: 10px;
   margin: 20px 10px;
 }
 
+.header {
+  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1em;
+}
+
+.main-profile-pic {
+  width: 100px;
+  height: 100px;
+  background: lightgrey;
+  border-radius: 50%;
+}
+
+
 .chat-content {
   overflow-y: scroll;
-  height: 600px;
+  height: 500px;
   padding: 20px;
 }
 
@@ -64,7 +80,7 @@ h4, p, li, select {
   display: flex;
   flex-flow: row nowrap;
   padding: 5px;
-  gap: 5px;
+  gap: 0.5em;
   justify-content: center;
 }
 
@@ -115,7 +131,7 @@ button {
 .new-todo-input {
   display: flex;
   flex-flow: row nowrap;
-  gap: 5px;
+  gap: 0.5em;
 }
 
 #new-todo-item {
@@ -197,7 +213,7 @@ input:checked + .slider:before {
 .user-buttons {
   display: flex;
   flex-flow: row nowrap;
-  gap: 5px;
+  gap: 0.5em;
   justify-content: center;
 }
 

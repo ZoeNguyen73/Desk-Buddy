@@ -8,6 +8,7 @@ import ClickEvent from "./events/clickevent.js";
 
 function init() {
   const userName = prompt("Hello! How should I call you?") || "buddy";
+  document.getElementById("username").innerText = userName;
 
   const frequencyDOM = document.getElementById("config-frequency");
   const endTimeSubmitDOM = document.getElementById("submit-end-time");
