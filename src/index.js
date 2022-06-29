@@ -15,7 +15,7 @@ function init() {
 
   const chatComponent = new ChatComponent();
   const config = new Config(userName, chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
-  const toDoList = new ToDoList();
+  const toDoList = new ToDoList(config);
   const timer = new Timer(config, chatComponent);
   const buttons = new Buttons(config, timer);
 

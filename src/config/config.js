@@ -3,12 +3,13 @@ import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {
   static buddyPicUrl = "./assets/images/buddy-profile-pic-cat.png";
-  #greetings = ["Hey", "Yo", "Holla", "Hi"];
   
+  #greetings = ["Hey", "Yo", "Holla", "Hi"];
   #chatComponent;
 
   constructor(userName, chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
     this.userName = userName;
+    this.buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
     this.events = events;
     this.frequencyInMs = frequencyInMs;
     this.endTime = endTime;
@@ -31,7 +32,7 @@ export default class Config {
 
   getMessage(index) {
     const currentEvent = this.events[index];
-    const message = new Message(`${this.#getGreeting()} ${currentEvent.message}`, Config.buddyPicUrl);
+    const message = new Message(`${this.#getGreeting()} ${currentEvent.message}`, this.buddyProfilePicUrl);
     return message;
   }
 
