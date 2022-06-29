@@ -1,5 +1,6 @@
 import { Message } from "../config/message.js";
 import Config from "../config/config.js";
+import { summaryComponent } from "../summary/summary.js";
 
 export class ToDoItem {
   constructor(task, id) {
@@ -7,13 +8,13 @@ export class ToDoItem {
     this.isDone = false;
     this.id = id;
   }
-
 }
 
 export class ToDoList {
   #toDoListComponent = new ToDoListComponent();
   #chatComponent = document.querySelector(".chat-content");
-  #taskArray =[]
+  #taskArray = []
+  #summaryComponent = summaryComponent;
   
   constructor() {
     this.isFullyCompleted = false;
@@ -78,6 +79,7 @@ export class ToDoList {
   #updateTaskStatus(id, newStatus) {
     this.#taskArray[id].isDone = newStatus;
     console.log(JSON.stringify(this.#taskArray));
+    this.#summaryComponent.displayCount("Task", this.#getNumberOfTasksDone());
     if (newStatus) {
       this.#completeTaskMessage();
     };
@@ -114,7 +116,6 @@ export class ToDoList {
     };
     return count;
   }
-
 }
 
 export class ToDoListComponent {
