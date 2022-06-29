@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-h4, p, li {
+h4, p, li, select {
   margin-bottom: 0;
 }
 
@@ -211,4 +211,9 @@ input:checked + .slider:before {
 
 .highlighted {
   color: blue;
+}
+
+.scrollable-list {
+  height: 155px;
+  overflow-y: scroll;
 }
