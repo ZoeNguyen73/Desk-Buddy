@@ -19,6 +19,7 @@ export class ToDoList {
   constructor() {
     this.isFullyCompleted = false;
     this.#addSubmitListener();
+    this.#addToDoListComponentListener();
   }
 
   #addSubmitListener() {
@@ -35,6 +36,17 @@ export class ToDoList {
         event.preventDefault();
         submitButton.click();
       };
+    });
+  }
+
+  #addToDoListComponentListener() {
+    this.#toDoListComponent.dom.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target.tagName !== "INPUT") {
+        return
+      };
+      const id = target.id * 1;
+      this.#updateTaskStatus(id, target.checked);
     });
   }
 
@@ -56,24 +68,11 @@ export class ToDoList {
     newTaskDom.innerHTML = `
       <span contenteditable="true">${item.task}</span>
       <label class="switch">
-          <input type="checkbox" id>
+          <input type="checkbox" id="${item.id}">
           <span class="slider round"></span>
       </label>
     `;
-    this.#addEventListener(newTaskDom);
     return newTaskDom;
-  }
-
-  #addEventListener(dom) {
-    dom.addEventListener("click", (event) => {
-      if (event.target.tagName !== "INPUT") {
-        return
-      };
-      const target = event.currentTarget;
-      const id = target.id * 1;
-      const checkBox = target.querySelector("input");
-      this.#updateTaskStatus(id, checkBox.checked).bind(this);
-    });
   }
 
   #updateTaskStatus(id, newStatus) {
@@ -118,11 +117,13 @@ export class ToDoList {
 }
 
 export class ToDoListComponent {
-  #dom = document.querySelector(".list");
+  
   constructor() {
+    this.dom = document.querySelector(".list");
   }
 
   display(domElement) {
-    this.#dom.append(domElement);
+    this.dom.append(domElement);
   }
+
 }
