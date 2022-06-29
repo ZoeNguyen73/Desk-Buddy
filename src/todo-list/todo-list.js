@@ -78,7 +78,6 @@ export class ToDoList {
 
   #updateTaskStatus(id, newStatus) {
     this.#taskArray[id].isDone = newStatus;
-    console.log(JSON.stringify(this.#taskArray));
     this.#summaryComponent.displayCount("Task", this.#getNumberOfTasksDone());
     if (newStatus) {
       this.#completeTaskMessage();
