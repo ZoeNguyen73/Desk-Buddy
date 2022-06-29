@@ -2,12 +2,10 @@ import { events } from "../events/event.js";
 import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {
-  static buddyPicUrl = "./assets/images/buddy-profile-pic-cat.png";
-  
   #greetings = ["Hey", "Yo", "Holla", "Hi"];
   #chatComponent;
 
-  constructor(userName, chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
+  constructor(userName, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
     this.userName = userName;
     this.buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
     this.events = events;
@@ -18,8 +16,11 @@ export default class Config {
       ? navigator.languages[0]
       : navigator.language;
     this.dateTimeDisplayOption = { weekday: "long", day: "numeric", month: "long"};
-    this.#chatComponent = chatComponent;
     this.#resetAllEvents();
+  }
+
+  assignChatComponent(chatComponent) {
+    this.#chatComponent = chatComponent;
   }
 
   #getGreeting() {

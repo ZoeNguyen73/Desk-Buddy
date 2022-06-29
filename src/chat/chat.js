@@ -30,9 +30,9 @@ export default class ChatComponent {
       const target = event.target;
       const { classPath, classMethod } = target.dataset;
       if(classPath && classMethod) {
-        this.processClassMethod(classPath, classMethod)
-      }
-      target.setAttribute("class", "hidden");
+        this.processClassMethod(classPath, classMethod);
+        target.setAttribute("class", "hidden");
+      };
     });
   }
 }

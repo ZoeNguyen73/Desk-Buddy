@@ -14,8 +14,9 @@ function init() {
   const endTimeSubmitDOM = document.getElementById("submit-end-time");
   const endTimeEntryDOM = document.getElementById("end-time-input");
 
+  const config = new Config(userName, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
   const chatComponent = new ChatComponent();
-  const config = new Config(userName, chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
+  config.assignChatComponent(chatComponent);
   const toDoList = new ToDoList(config);
   const timer = new Timer(config, chatComponent);
   const buttons = new Buttons(config, timer);
