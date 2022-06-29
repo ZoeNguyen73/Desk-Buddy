@@ -2,8 +2,6 @@ import { events } from "../events/event.js";
 import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {
-  static buddyPicUrl = "./assets/images/buddy-profile-pic-cat.png";
-  
   #chatComponent;
 
   constructor(chatComponent, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59", userName = "buddy") {
