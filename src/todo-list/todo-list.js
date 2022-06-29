@@ -15,8 +15,10 @@ export class ToDoList {
   #chatComponent = document.querySelector(".chat-content");
   #taskArray = []
   #summaryComponent = summaryComponent;
+  #config;
   
-  constructor() {
+  constructor(config) {
+    this.#config = config;
     this.isFullyCompleted = false;
     this.#addSubmitListener();
     this.#addToDoListComponentListener();
@@ -51,17 +53,17 @@ export class ToDoList {
   }
 
   #addNewItem(text) {
-    if (text === "") {
+    if (!text || text === "") {
       return
     };
     const id = this.#taskArray.length;
     const newItem = new ToDoItem(text, id);
     this.#taskArray.push(newItem);
-    const newDom = this.#createDom(newItem);
+    const newDom = this.#render(newItem);
     this.#toDoListComponent.display(newDom);
   }
 
-  #createDom(item) {
+  #render(item) {
     const newTaskDom = document.createElement("li");
     newTaskDom.setAttribute("class", "todo-item");
     newTaskDom.setAttribute("id", item.id);
@@ -91,7 +93,7 @@ export class ToDoList {
     } else {
       text = `Yay, you've completed ${count} ${count > 1 ? "tasks" : "task"} so far!`;
     };
-    const message = new Message(text, Config.buddyPicUrl);
+    const message = new Message(text, this.#config.buddyProfilePicUrl);
     this.#chatComponent.append(message.render());
     this.#chatComponent.scrollTop = this.#chatComponent.scrollHeight;
   }
