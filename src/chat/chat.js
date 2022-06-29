@@ -26,11 +26,13 @@ export default class ChatComponent {
   }
 
   addClickEventListener() {
-    this.#dom.addEventListener("click", (evnt) => {
-      const { classPath, classMethod } = evnt.target.dataset;
+    this.#dom.addEventListener("click", (event) => {
+      const target = event.target;
+      const { classPath, classMethod } = target.dataset;
       if(classPath && classMethod) {
         this.processClassMethod(classPath, classMethod)
       }
+      target.setAttribute("class", "hidden");
     });
   }
 }
