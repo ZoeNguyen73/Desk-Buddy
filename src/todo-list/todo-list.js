@@ -89,9 +89,9 @@ export class ToDoList {
     let text = "";
     const count = this.#getNumberOfTasksDone();
     if (this.#isFullyCompleted()) {
-      text = `Congrats! You've done all that you've set out to do today :D`;
+      text = `Congrats! You've done all that you've set out to do today 😃👏👏 What a champ! 🏆`;
     } else {
-      text = `Yay, you've completed ${count} ${count > 1 ? "tasks" : "task"} so far!`;
+      text = `Yay, you've completed ${count} ${count > 1 ? "tasks" : "task"} so far! 🎉`;
     };
     const message = new Message(text, this.#config.buddyProfilePicUrl);
     this.#chatComponent.append(message.render());
