@@ -13,7 +13,7 @@ As more people work from home or work remotely, **Desk Buddy means to be a virtu
 * Note: for this demo version, frequency is set in "seconds". For real-life usage, frequency will be set in "minutes" instead.
 
 ### Link
-[https://github.com/ZoeNguyen73/Desk-Buddy/src/index.html](https://github.com/ZoeNguyen73/Desk-Buddy/src/index.html)
+[https://zoenguyen73.github.io/Desk-Buddy/src/index.html](https://zoenguyen73.github.io/Desk-Buddy/src/index.html)
 
 ### Instructions
 * Simply load the page on a browser to get started
