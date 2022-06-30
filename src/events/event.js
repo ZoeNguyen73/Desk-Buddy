@@ -28,7 +28,7 @@ export class QuoteEvent extends Event {
 
   updateMessage() {
     const newMsg = this.#quotesApi.getRandomQuote();
-    this.message = `Here's a quote for you: ${newMsg}`;
+    this.message = `Here's a quote for you: <i>${newMsg}</i>`;
   }
 }
 
@@ -47,7 +47,7 @@ export class RandomMessageEvent extends Event {
     "Work sucks, but at least you don't 😝",
     "Hey busy bee~ remember to take a breather every now and then",
     "You got it! Ganbatte!!!",
-    "I've always wondered... how do you make it look so easy? 🤔",
+    "I've always wondered... how do you make work look so easy? 🤔",
     "Don't mind me - just looking up when is the next public holiday hehehe...",
     "Is it too early to think about my next meal? 🤭🍣🥧🍜",
     "👋👋👋👋 nothing~ just wanna say hi! hehe",

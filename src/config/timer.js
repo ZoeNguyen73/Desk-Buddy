@@ -33,9 +33,17 @@ export class Timer {
 
 		const timeHtmlElement = `
 			<p>Today's date: 
-			${currentTime.toLocaleDateString(this.#config.locale, this.#config.dateTimeDisplayOption)}</p>
-			<p>Current time: ${currentHour}:${currentMinute} ${session}</p>
+			<span class="date-display">${currentTime.toLocaleDateString(this.#config.locale, this.#config.dateTimeDisplayOption)}</span></p>
+			<p>Current time: 
+				<span class="time-display">
+					${currentHour}
+					<b id="blinking">:</b>
+					${currentMinute} ${session}
+				</span>
+			</p>
 		`;
+
+		console.log(timeHtmlElement);
 
 		this.#timeComponent.display(timeHtmlElement);
 

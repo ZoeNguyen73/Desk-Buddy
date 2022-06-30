@@ -78,7 +78,7 @@ export default class ClickEvent {
     try {
       const newMeme = await randomMemeApi.getRandomMemeUrl();
       const newMsg = new Message(
-        `LOL at this: <img class="meme-pic" src="${newMeme}">`, 
+        `LOL checkout this meme 🤣🤣🤣 <img class="meme-pic" src="${newMeme}">`, 
         ClickEvent.buddyProfilePicUrl
       );
       ClickEvent.dom.append(newMsg.render());
