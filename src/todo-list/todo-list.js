@@ -70,8 +70,8 @@ export class ToDoList {
     newTaskDom.innerHTML = `
       <span contenteditable="true">${item.task}</span>
       <label class="switch">
-          <input type="checkbox" id="${item.id}">
-          <span class="slider round"></span>
+        <input type="checkbox" id="${item.id}">
+        <span class="slider round"></span>
       </label>
     `;
     return newTaskDom;
@@ -127,5 +127,4 @@ export class ToDoListComponent {
   display(domElement) {
     this.dom.append(domElement);
   }
-
 }

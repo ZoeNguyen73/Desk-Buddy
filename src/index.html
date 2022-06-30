@@ -10,21 +10,24 @@
   <link rel="stylesheet" href="./style.css">
   <title>Desk Buddy</title>
 </head>
+
 <body class="container">
   <div class="main" id="top">
+
     <div class="header">
       <div class="buddy-pic">
         <img class="main-profile-pic" src="./assets/images/buddy-profile-pic-cat.png" alt="buddy profile pic">
       </div>
       <div class="profile-blurb">
-        <h2>Hey <span id="username">there</span>!</h2>
+        <h1>Hey <span id="username">there</span>,</h1>
         <p>I am Meowry - your new desk buddy! <span class="hidden-on-mobile">Don't worry, I don't bite 😸 (Although I may scratch).</span></p>
         <p class="hidden-on-mobile">Just poke me whenever you want a break~</p>
       </div>
     </div>
+
     <div class="chatbox">
       <div class="chat-header">
-        <h4>Chat Box</h4>
+        <h2>Chat Box</h2>
       </div>
       <div class="chat-content">
         <div class="buddy-message">
@@ -33,10 +36,12 @@
         </div>
       </div>
     </div>
+
     <div class="user-buttons">
       <button type="button" id="poke-me">Poke Me 👉</button>
       <button type="button" id="end-the-day">End the day ⏰</button>
     </div>
+
   </div>
     
   <div class="sidebar">
@@ -49,13 +54,12 @@
     </div>
 
     <div id="date-time-display">
-      <h3>Current Time</h3>
-      <div id="date-time-container">
-      </div>
+      <h2>Current Time</h2>
+      <div id="date-time-container"></div>
     </div>
     
     <div id="config">
-      <h3>Settings</h3>
+      <h2>Settings</h2>
 
       <p>Frequency (sec):
         <select name="30" id="config-frequency">
@@ -79,7 +83,7 @@
 
     <div class="todo-list">
       <div class="todo-header">
-        <h3>To do list</h3>
+        <h2>To do list</h2>
       </div>
       <div class="todo-content">
         <div class="new-todo-input">
@@ -96,7 +100,7 @@
 
     <div class="day-summary">
       <div class="summary-header">
-        <h3>Day summary</h3>
+        <h2>Day summary</h2>
       </div>
       <div class="summary-content">
         <ul>
@@ -111,7 +115,7 @@
           </li>
           <li>
             Number of tasks done: <span class="bold highlighted" id="tasks-done-count">0</span>
-           </li>
+          </li>
         </ul>
       </div>
     </div>
@@ -122,14 +126,14 @@
           Back To Top
         </button>
       </a>
-      
     </div>
 
     <div class="credit">
       <p>Created by <a href="https://github.com/ZoeNguyen73">Zoe Nguyen</a></p>
     </div>
-
   </div>
+
   <script type="module" src="./index.js"></script>
 </body>
+
 </html>

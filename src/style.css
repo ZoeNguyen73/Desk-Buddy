@@ -29,12 +29,17 @@ body {
   flex: 2 3 0;
 }
 
-h3, h4, h5, p, li, select {
+h1, h2, p, li, select {
   margin: 0;
 }
 
-h3 {
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
   color: #ffcf81;
+  font-size: 1.17em;
 }
 
 .tips {
