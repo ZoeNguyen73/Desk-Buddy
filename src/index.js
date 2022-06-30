@@ -25,4 +25,14 @@ function init() {
   timer.start();
 }
 
+const backToTopButton = document.getElementById("back-to-top-button");
+
+window.onscroll = function() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    backToTopButton.style.display = "block";
+  } else {
+    backToTopButton.style.display = "none";
+  }
+};
+
 init();

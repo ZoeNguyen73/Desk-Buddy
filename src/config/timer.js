@@ -43,8 +43,6 @@ export class Timer {
 			</p>
 		`;
 
-		console.log(timeHtmlElement);
-
 		this.#timeComponent.display(timeHtmlElement);
 
 		setTimeout(() => {

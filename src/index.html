@@ -11,7 +11,7 @@
   <title>Desk Buddy</title>
 </head>
 <body class="container">
-  <div class="main">
+  <div class="main" id="top">
     <div class="header">
       <div class="buddy-pic">
         <img class="main-profile-pic" src="./assets/images/buddy-profile-pic-cat.png" alt="buddy profile pic">
@@ -40,13 +40,21 @@
   </div>
     
   <div class="sidebar">
-    <div class="date-time-display">
+    <div class="shortcuts displayed-on-mobile">
+      <a href="#date-time-display">
+        <div>
+          View More
+        </div>
+      </a> 
+    </div>
+
+    <div id="date-time-display">
       <h3>Current Time</h3>
       <div id="date-time-container">
       </div>
     </div>
     
-    <div class="config ">
+    <div id="config">
       <h3>Settings</h3>
 
       <p>Frequency (sec):
@@ -100,10 +108,19 @@
            Take a break: <span class="bold highlighted" id="break-event-count">0</span> times
           </li>
           <li>
-            Number of tasks done: <span class="bold highlighted" id="tasks-done-count">0</span> done
+            Number of tasks done: <span class="bold highlighted" id="tasks-done-count">0</span>
            </li>
         </ul>
       </div>
+    </div>
+
+    <div class="displayed-on-mobile">
+      <a href="#top">
+        <button id="back-to-top-button" title="Go to top">
+          Back To Top
+        </button>
+      </a>
+      
     </div>
 
     <div class="credit">
