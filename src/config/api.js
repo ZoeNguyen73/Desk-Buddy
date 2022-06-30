@@ -9,7 +9,7 @@ class RandomJokeApi {
     this.#options = {
       method: "GET",
       params: {
-        blacklist: "dark, sex, insults, racist, rude"
+        blacklist: "dark, dirty, sex, insults, racist, rude, gay, black, fat, hate"
       },
       headers: {
         Authorization: "zp8cS9WMnvzU",
