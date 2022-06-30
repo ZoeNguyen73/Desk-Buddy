@@ -1,5 +1,8 @@
+import { ChatSound } from "./sound.js";
+
 export default class ChatComponent {
   #dom = document.querySelector(".chat-content");
+  #sound = new ChatSound();
 
   constructor() {
     this.addClickEventListener();
@@ -13,6 +16,7 @@ export default class ChatComponent {
   display(domElement) {
     this.#dom.append(domElement);
     this.#scrollToBottom();
+    this.#sound.playMessageNotifSound();
   }
 
   #scrollToBottom() {
@@ -34,5 +38,13 @@ export default class ChatComponent {
         target.setAttribute("class", "hidden");
       };
     });
+  }
+
+  mute() {
+    this.#sound.muteAll();
+  }
+
+  unmute() {
+    this.#sound.unmuteAll();
   }
 }

@@ -13,8 +13,9 @@ function init() {
   const frequencyDOM = document.getElementById("config-frequency");
   const endTimeSubmitDOM = document.getElementById("submit-end-time");
   const endTimeEntryDOM = document.getElementById("end-time-input");
+  const soundToggleDOM = document.getElementById("sound-toggle");
 
-  const config = new Config(userName, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
+  const config = new Config(userName, soundToggleDOM, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
   const chatComponent = new ChatComponent();
   config.assignChatComponent(chatComponent);
   const toDoList = new ToDoList(config);

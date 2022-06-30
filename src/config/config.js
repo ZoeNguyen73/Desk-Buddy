@@ -5,13 +5,13 @@ export default class Config {
   #greetings = ["Hey", "Yo", "Holla", "Hi"];
   #chatComponent;
 
-  constructor(userName, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
+  constructor(userName, soundToggleDOM, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
     this.userName = userName;
     this.buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
     this.events = events;
     this.frequencyInMs = frequencyInMs;
     this.endTime = endTime;
-    this.#addConfigChangeListeners(frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
+    this.#addConfigChangeListeners(soundToggleDOM , frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
     this.locale = navigator.languages && navigator.languages.length
       ? navigator.languages[0]
       : navigator.language;
@@ -47,7 +47,7 @@ export default class Config {
     return this.events.length;
   }
 
-  #addConfigChangeListeners(frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM) {
+  #addConfigChangeListeners(soundToggleDOM, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM) {
     // frequency change
     frequencyDOM.addEventListener("change", () => {
       const newFrequencyInMs = frequencyDOM.value * 1000;
@@ -58,6 +58,19 @@ export default class Config {
       const endTimeInput = `${endTimeEntryDOM.value}:00`;
       this.updateConfig("endTime", endTimeInput);
     });
+    // mute sound toggle
+    soundToggleDOM.addEventListener("click", () => {
+      const currentState = soundToggleDOM.innerText;
+      if (currentState === "ON 🔉") {
+        this.#chatComponent.mute();
+        soundToggleDOM.innerText = "OFF 🔇";
+      };
+      if (currentState === "OFF 🔇") {
+        this.#chatComponent.unmute();
+        soundToggleDOM.innerText = "ON 🔉";
+      };
+    });
+
   }
 
   updateConfig(type, value) {

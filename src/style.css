@@ -42,6 +42,12 @@ h2 {
   font-size: 1.17em;
 }
 
+.tips {
+  font-size: 0.7em;
+  color: lightgray;
+  font-style: italic;
+}
+
 .chatbox, .todo-list, .day-summary, .header, .credit {
   background: #F3EDDF;
   border-radius: 1em;
@@ -72,13 +78,13 @@ h2 {
 }
 
 .todo-content {
-  height: calc(100vh - 700px);
+  height: calc(100vh - 750px);
   min-height: 100px;
   padding: 1.5em;
 }
 
 .scrollable-list {
-  height: calc(100vh - 750px);
+  height: calc(100vh - 800px);
   min-height: 50px;
   overflow-y: scroll;
 }
@@ -96,6 +102,10 @@ h2 {
   padding: 1em;
   background: #f08976;
   color: #FCF8E8;
+}
+
+#sound-toggle {
+  cursor: pointer;
 }
 
 .buddy-message {
@@ -410,7 +420,7 @@ input:checked + .slider:before {
   }
 
   .chat-content {
-    height: calc(100vh - 350px);
+    height: calc(100vh - 250px);
     padding: 0.7em;
   }
 
