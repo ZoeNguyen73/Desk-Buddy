@@ -39,4 +39,12 @@ export default class ChatComponent {
       };
     });
   }
+
+  mute() {
+    this.#sound.muteAll();
+  }
+
+  unmute() {
+    this.#sound.unmuteAll();
+  }
 }
