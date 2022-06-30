@@ -4,62 +4,62 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./3rd-party/Skeleton-2.0.4/css/normalize.css">
-  <link rel="stylesheet" href="./3rd-party/Skeleton-2.0.4/css/skeleton.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css">
   <title>Desk Buddy</title>
 </head>
+
 <body class="container">
-  <div class="seven columns">
+  <div class="main" id="top">
+
     <div class="header">
       <div class="buddy-pic">
         <img class="main-profile-pic" src="./assets/images/buddy-profile-pic-cat.png" alt="buddy profile pic">
       </div>
       <div class="profile-blurb">
-        <h5>Hey <span id="username">there</span>!</h5>
-        <p>I am Meowry - your new desk buddy! Don't worry, I don't bite 😸 (Although I may scratch).</p>
-        <p>Just poke me whenever you want a break~</p>
+        <h1>Hey <span id="username">there</span>,</h1>
+        <p>I am Meowry - your new desk buddy! <span class="hidden-on-mobile">Don't worry, I don't bite 😸 (Although I may scratch).</span></p>
+        <p class="hidden-on-mobile">Just poke me whenever you want a break~</p>
       </div>
     </div>
-    <div class = "chatbox">
+
+    <div class="chatbox">
       <div class="chat-header">
-        <h4>Chat Box</h4>
+        <h2>Chat Box</h2>
       </div>
       <div class="chat-content">
         <div class="buddy-message">
           <img class="buddy-chat-profile-pic" src="./assets/images/buddy-profile-pic-cat.png" alt="buddy profile pic" />
-          <p class="buddy-message-content">Hello there!</p>
-        </div>
-        <div class="buddy-message">
-          <img class="buddy-chat-profile-pic" src="./assets/images/buddy-profile-pic-cat.png" alt="buddy profile pic" />
-          <p class="buddy-message-content">
-              &ldquo;We are all different. Don't judge, understand instead.&rdquo; &mdash; 
-              Roy T. Bennett
-          </p>
-          
-        </div>
-        <div class="user-input">
-          <button id="haha" data-class-path="events/clickevent.js" data-class-method="onclick">
-            Test message
-          </button>
+          <p class="buddy-message-content">Hello there! ✌️</p>
         </div>
       </div>
     </div>
+
     <div class="user-buttons">
-      <button type="button" id="poke-me">Poke Me</button>
-      <button type="button" id="end-the-day">End the day</button>
+      <button type="button" id="poke-me">Poke Me 👉</button>
+      <button type="button" id="end-the-day">End the day ⏰</button>
     </div>
+
   </div>
     
-  <div class="sidebar five columns">
-    <div class="date-time-display">
-      <h4>Current Time</h4>
-      <div id="date-time-container">
-      </div>
+  <div class="sidebar">
+    <div class="shortcuts displayed-on-mobile">
+      <a href="#date-time-display">
+        <div>
+          View More
+        </div>
+      </a> 
+    </div>
+
+    <div id="date-time-display">
+      <h2>Current Time</h2>
+      <div id="date-time-container"></div>
     </div>
     
-    <div class="config ">
-      <h4>Settings</h4>
+    <div id="config">
+      <h2>Settings</h2>
 
       <p>Frequency (sec):
         <select name="30" id="config-frequency">
@@ -81,23 +81,16 @@
 
     <div class="todo-list">
       <div class="todo-header">
-        <h4>To do list</h4>
+        <h2>To do list</h2>
       </div>
       <div class="todo-content">
         <div class="new-todo-input">
-          <input type="text" id="new-todo-item" placeholder="add new to do task here">
+          <input type="text" id="new-todo-item" placeholder="add new task here">
           <button type="button" id="submit-todo">Submit</button>
         </div>
       
         <div class="scrollable-list">
           <ul class="list">
-            <li class="todo-item">
-              <span contenteditable="true">Clear email inbox</span>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-              </label>
-            </li>
           </ul>
         </div>
       </div>
@@ -105,7 +98,7 @@
 
     <div class="day-summary">
       <div class="summary-header">
-        <h4>Day summary</h4>
+        <h2>Day summary</h2>
       </div>
       <div class="summary-content">
         <ul>
@@ -119,13 +112,26 @@
            Take a break: <span class="bold highlighted" id="break-event-count">0</span> times
           </li>
           <li>
-            Number of tasks done: <span class="bold highlighted" id="tasks-done-count">0</span> done
-           </li>
+            Number of tasks done: <span class="bold highlighted" id="tasks-done-count">0</span>
+          </li>
         </ul>
       </div>
     </div>
 
+    <div class="displayed-on-mobile">
+      <a href="#top">
+        <button id="back-to-top-button" title="Go to top">
+          Back To Top
+        </button>
+      </a>
+    </div>
+
+    <div class="credit">
+      <p>Created by <a href="https://github.com/ZoeNguyen73">Zoe Nguyen</a></p>
+    </div>
   </div>
+
   <script type="module" src="./index.js"></script>
 </body>
+
 </html>

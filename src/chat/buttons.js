@@ -7,6 +7,7 @@ export default class Buttons {
     endDayButton: document.getElementById("end-the-day")
   };
   #timer;
+  
   constructor(config, timer) {
     this.#config = config;
     this.#timer = timer;

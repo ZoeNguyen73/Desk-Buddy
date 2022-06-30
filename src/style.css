@@ -1,24 +1,55 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Roboto Mono", monospace;
+  scroll-behavior: smooth;
 }
 
-h4, h5, p, li, select {
-  margin-bottom: 0;
+body {
+  background: #314D63;
+}
+
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 1em 10em;
+  max-height: 100%;
+}
+
+.main {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 5 1 0;
+  min-width: 500px;
 }
 
 .sidebar {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 2 3 0;
+}
+
+h1, h2, p, li, select {
   margin: 0;
 }
 
-.chatbox, .todo-list, .day-summary, .header {
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  margin: 20px 10px;
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  color: #ffcf81;
+  font-size: 1.17em;
+}
+
+.chatbox, .todo-list, .day-summary, .header, .credit {
+  background: #F3EDDF;
+  border-radius: 1em;
+  margin: 1em 1em;
 }
 
 .header {
-  padding: 20px;
+  padding: 1.5em;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -26,82 +57,100 @@ h4, h5, p, li, select {
 }
 
 .main-profile-pic {
-  width: 100px;
-  height: 100px;
-  background: lightgrey;
+  width: 7em;
+  height: 7em;
+  background: #8FB9AB;
   border-radius: 50%;
 }
 
 
 .chat-content {
   overflow-y: scroll;
-  height: 500px;
-  padding: 20px;
+  min-height: 100px;
+  height: calc(100vh - 460px);
+  padding: 1.5em;
 }
 
 .todo-content {
-  height: 200px;
-  padding: 20px;
+  height: calc(100vh - 700px);
+  min-height: 100px;
+  padding: 1.5em;
+}
+
+.scrollable-list {
+  height: calc(100vh - 750px);
+  min-height: 50px;
+  overflow-y: scroll;
 }
 
 .summary-content {
-  padding: 20px;
+  padding: 1.5em;
 }
 
-.chat-header, .config, .todo-header, .date-time-display, .summary-header {
-  border-radius: 10px;
-  padding: 10px;
-  background: #DF7861;
+.summary-content ul {
+  padding-left: 1em;
+}
+
+.chat-header, #config, .todo-header, #date-time-display, .summary-header{
+  border-radius: 1em;
+  padding: 1em;
+  background: #f08976;
   color: #FCF8E8;
-}
-
-.chat-header p {
-  margin-bottom: 0;
 }
 
 .buddy-message {
   display: flex;
   flex-flow: row nowrap;
+  max-width: 800px;
   gap: 1em;
+  align-items: flex-start;
+  padding: 0.5em 0;
 }
 
 .buddy-message-content {
   background: lightblue;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px 0px;
-  flex: 1 0 0;
-  align-items: center;
+  border-radius: 0.4em;
+  padding: 0.7em;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
 }
 
 .user-input {
   display: flex;
   flex-flow: row nowrap;
-  padding: 5px;
   gap: 0.5em;
   justify-content: center;
+  padding-bottom: 0.7em;
 }
 
 .buddy-chat-profile-pic {
-  width: 50px;
-  height: 50px;
+  width: 3em;
+  height: 3em;
+  background: #8FB9AB;
+  border-radius: 0.5em;
 }
 
 button {
-  background: #94B49F;
+  background: #8FB9AB;
   color: #FCF8E8;
   border: none;
   margin-bottom: 0;
+  padding: 0.5em;
+  border-radius: 0.4em;
+  font-size: 1em;
 }
 
-.config, .todo-list, .date-time-display, .day-summary {
-  margin: 20px 10px;
+button:hover {
+  background: #428b73;
+  transition: 0.3s;
 }
 
-.config p {
-  margin: 0;
+#config, .todo-list, #date-time-display, .day-summary, .shortcuts  {
+  margin: 1em 0.7em;
+}
+
+.date-display, .time-display {
+  font-weight: bold;
 }
 
 #config-frequency, #end-time-input {
@@ -120,28 +169,32 @@ button {
   font-style: italic;
   text-align: center;
   color: lightslategray;
-  border-radius: 5px;
-  margin: 5px 0;
+  border-radius: 0.5em;
+  margin: 0.5em 0;
+  padding: 0.5em 0;
 }
 
 #submit-end-time, #submit-todo {
-  padding: 0 10px;
+  padding: 2px 10px;
 }
 
 .new-todo-input {
   display: flex;
   flex-flow: row nowrap;
   gap: 0.5em;
+  padding-bottom: 1em;
 }
 
 #new-todo-item {
   flex: 1 0 0;
+  padding-left: 5px;
+  border: none;
 }
 
 .todo-item {
   display: flex;
   flex-flow: row nowrap;
-  gap: 1em;
+  margin: 0.3em ;
   justify-content: space-between;
   align-items: center;
 }
@@ -215,10 +268,18 @@ input:checked + .slider:before {
   flex-flow: row nowrap;
   gap: 0.5em;
   justify-content: center;
+  margin: 1.5em;
+}
+
+.user-buttons button {
+  font-size: 1.2em;
+  padding: 0.5em 0.8em;
+  border-radius: 0.4em;
 }
 
 .meme-pic {
   max-width: 90%;
+  max-height: calc(100vh - 500px);
 }
 
 .bold {
@@ -226,14 +287,159 @@ input:checked + .slider:before {
 }
 
 .highlighted {
-  color: blue;
-}
-
-.scrollable-list {
-  height: 155px;
-  overflow-y: scroll;
+  color: #f08976;
 }
 
 .hidden {
   display: none;
+}
+
+#blinking {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.credit {
+  background: none;
+  font-style: italic;
+  font-size: 0.8em;
+  color: #F4D096;
+  display: flex;
+  justify-content: center;
+}
+
+.credit a {
+  text-decoration: none;
+  color: #F4D096;
+}
+
+.credit a:hover {
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.displayed-on-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 1500px) {
+  .container {
+    margin: 0 4em;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .container {
+    margin: 0 2em;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .displayed-on-mobile {
+    display: flex;
+  }
+
+  .shortcuts {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    gap: 0.7em;
+    align-items: center;
+  }
+  
+  .shortcuts > * {
+    flex: 1 1 0;
+    text-align: center;
+    background:#F4D096;
+    padding: 0.2em;
+    border-radius: 0.3em;
+    color: black;
+  }
+
+  .shortcuts a {
+    text-decoration: none;
+  }
+
+  .container {
+    margin: 0 0.3em;
+    flex-flow: column nowrap;
+  }
+
+  .main {
+    min-width: 0px;
+  }
+
+  .main-profile-pic {
+    width: 3em;
+    height: 3em;
+  }
+
+  .chatbox, .todo-list, .day-summary, .header, .user-buttons {
+    margin: 1em 1em;
+  }
+
+  .credit {
+    margin: 0;
+  }
+
+  .chat-header, #config, .todo-header, #date-time-display, .summary-header {
+    padding: 0.7em;
+  }
+
+  .summary-content {
+    padding: 0.7em;
+  }
+  
+  #config, .todo-list, #date-time-display, .day-summary {
+    margin: 0.7em 0.7em;
+  }
+
+  .user-buttons button {
+    font-size: 1em;
+    padding: 0.5em 0.5em;
+    border-radius: 0.4em;
+  }
+
+  .header {
+    padding: 0.7em
+  }
+
+  .chat-content {
+    height: calc(100vh - 350px);
+    padding: 0.7em;
+  }
+
+  .hidden-on-mobile {
+    display: none;
+  }
+
+  .sidebar {
+    flex: 3 0 100%;
+  }
+
+  .todo-content {
+    padding: 0.7em;
+    height: calc(100vh - 750px);
+  }
+
+  .scrollable-list {
+    height: calc(100vh - 800px);
+  }
+
+  .buddy-message {
+    gap: 0.7em;
+  }
+
+  #back-to-top-button {
+    display: none;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 99;
+  }
 }

@@ -40,12 +40,11 @@ export class MessageWithClickEvent {
     responsesArr.forEach(response => {
       str += `
         <button id="haha" data-class-path="events/clickevent.js" data-class-method="${this.messages[response]}">
-        ${response}
+          ${response}
         </button>
       `;
     });
     newMessage.innerHTML = str;
     return newMessage;
   }
-
 }

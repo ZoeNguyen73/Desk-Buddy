@@ -37,7 +37,7 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://random-stuff-api.p.rapidapi.com/reddit/FetchSubredditPost?subreddit=memes&searchType=rising";
+    this.#url = "https://random-stuff-api.p.rapidapi.com/reddit/FetchSubredditPost?subreddit=memes&searchType=top";
     this.#options = {
       method: "GET",
       headers: {
