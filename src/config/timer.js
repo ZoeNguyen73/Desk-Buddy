@@ -17,7 +17,7 @@ export class Timer {
   runClock() {
     const currentTime = new Date();
     let currentHour = currentTime.getHours();
-    const currentMinute = currentTime.getMinutes().toString().padStart(2, "0");
+    const currentMinuteInStr = currentTime.getMinutes().toString().padStart(2, "0");
 
     let session = "AM";
 
@@ -29,7 +29,7 @@ export class Timer {
       currentHour -= 12;
     };
 
-    currentHour = currentHour.toString().padStart(2, "0");
+    const currentHourinStr = currentHour.toString().padStart(2, "0");
 
     const timeHtmlElement = `
       <p>Today's date: 
@@ -37,9 +37,9 @@ export class Timer {
       </p>
       <p>Current time: 
         <span class="time-display">
-          ${currentHour}
+          ${currentHourinStr}
           <b id="blinking">:</b>
-          ${currentMinute} ${session}
+          ${currentMinuteInStr} ${session}
         </span>
       </p>
     `;
