@@ -121,6 +121,8 @@ h3 {
 .buddy-chat-profile-pic {
   width: 3em;
   height: 3em;
+  background: #8FB9AB;
+  border-radius: 0.5em;
 }
 
 button {
