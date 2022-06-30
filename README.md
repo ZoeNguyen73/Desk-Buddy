@@ -3,14 +3,14 @@
 ## About **Desk Buddy**
 
 ### Project description
-As more people work from home or work remotely, **Desk Buddy means to be a virtual "companion" to "work" alongside the user. The virtual buddy will provide **encouragements** and **timely reminders to take breaks** - similar to how a real life co-worker may do.
+As more people work from home or remotely, **Desk Buddy** means to be a virtual "companion" to "work" alongside the user. The virtual buddy will provide **encouragements** and **timely reminders to take breaks** - similar to how a real life co-worker may do.
 
 ### Key functionalities
 * At a set frequency (configurable by the user), send a message in the chat box. The message can be a random message, or an interactive reminder/prompt for break.
 * Store user's to-do list and allow users to add/edit/complete tasks
 * Capture a snapshot summary of the day
 * Automatically ends the program at a set end time
-* Note: for this demo version, frequency is set in "seconds". For real-life usage, frequency will be set in "minutes" instead.
+* Note: for this demo version, frequency is set in _seconds_. For real-life usage, frequency will be set in _minutes_ instead.
 
 ### Link
 [https://zoenguyen73.github.io/Desk-Buddy/src/index.html](https://zoenguyen73.github.io/Desk-Buddy/src/index.html)
