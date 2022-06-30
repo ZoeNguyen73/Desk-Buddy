@@ -33,7 +33,8 @@ export class Timer {
 
 		const timeHtmlElement = `
 			<p>Today's date: 
-			<span class="date-display">${currentTime.toLocaleDateString(this.#config.locale, this.#config.dateTimeDisplayOption)}</span></p>
+				<span class="date-display">${currentTime.toLocaleDateString(this.#config.locale, this.#config.dateTimeDisplayOption)}</span>
+			</p>
 			<p>Current time: 
 				<span class="time-display">
 					${currentHour}
@@ -106,7 +107,6 @@ export class Timer {
 			this.#config.events[this.#currentEventIndex - 1].updateMessage();
 		};
 	}
-
 }
 
 export class TimeComponent {

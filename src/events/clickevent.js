@@ -87,7 +87,6 @@ export default class ClickEvent {
       console.log(`${error}`);
     };
   }
-
 }
 
 export const clickEvent = new ClickEvent();

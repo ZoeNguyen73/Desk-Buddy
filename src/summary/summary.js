@@ -15,7 +15,6 @@ export class SummaryComponent {
     };
     this.#doms[type].innerText = number;
   }
-
 }
 
 export const summaryComponent = new SummaryComponent();
