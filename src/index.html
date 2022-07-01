@@ -14,7 +14,6 @@
 <body class="container">
   <div id="welcome-back-modal" class="modal">
     <div class="modal-content">
-      <span class="modal-close start-the-day x-button">&times;</span>
       <h1>Welcome back, <span id="current-username"></span>!</h1>
       <button class="modal-close" id="start-the-day">Let's start the day!</button>
       <p class="tips">
@@ -31,7 +30,7 @@
         How should I call you?
       </h4>
       <div>
-        <input type="text" size="50" id="new-username" class="input" placeholder="your name">
+        <input type="text" size="30" id="new-username" class="input" placeholder="your name">
       </div>
       <button class="submit" id="submit-username">Submit</button>
       <button id="skip">Skip</button>
@@ -99,7 +98,7 @@
         </select>
       </p>
 
-      <p id="config-end-time">End time (24hrs):
+      <p id="config-end-time">End time:
         <input type="time" id="end-time-input" value="23:59">
         <button type="button" id="submit-end-time">Submit</button>
       </p>
