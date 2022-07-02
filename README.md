@@ -2,6 +2,8 @@
 
 ## About **Desk Buddy**
 
+**Note** There is currently a small bug that causes the program to not work the first time you open it 😭. Do not fret and just reload the page - it should work afterwards! Bug fixing is in progress...
+
 ### Project description
 As more people work from home or remotely, **Desk Buddy** means to be a virtual "companion" to "work" alongside the user. The virtual buddy will provide **encouragements** and **timely reminders to take breaks** - similar to how a real life co-worker may do.
 
