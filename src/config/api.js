@@ -81,9 +81,9 @@ class QuotesApi {
     };
   }
 
-  #populateQuotes() {
+  async #populateQuotes() {
     if (!localStorage.getItem("quotes")) {
-      this.#storeQuotesInLocalStorage();
+      await this.#storeQuotesInLocalStorage();
     }
     const data = JSON.parse(localStorage.getItem("quotes")).results;
     data.forEach(quote => {
