@@ -3,7 +3,6 @@
 ## About **Desk Buddy**
 
 **Note** 
-* _There is currently a small bug that may cause the program to not work the first time you open it 😭. Do not fret and just reload the page - it should work afterwards!_
 * _I tried to blacklist certain types of jokes from being displayed. However, there is something wrong with the API and the results are not as expected. Apologies in advance if the program display any offensive jokes or memes..._
 
 ### Project description
