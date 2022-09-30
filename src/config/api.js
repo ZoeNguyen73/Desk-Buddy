@@ -5,16 +5,12 @@ class RandomJokeApi {
 
   constructor() {
     this.#name = "Random Joke";
-    this.#url = "https://random-stuff-api.p.rapidapi.com/joke";
+    this.#url = "https://icanhazdadjoke.com/";
     this.#options = {
       method: "GET",
-      params: {
-        blacklist: "dark, dirty, sex, insults, racist, rude, gay, black, fat, hate"
-      },
       headers: {
-        Authorization: "zp8cS9WMnvzU",
-        "X-RapidAPI-Key": "5ff2da6b38msh35c4993553a99d2p11ec64jsn39e47a56a104",
-        "X-RapidAPI-Host": "random-stuff-api.p.rapidapi.com"
+        Accept: "application/json",
+        "User-Agent": "My project (https://github.com/ZoeNguyen73/Desk-Buddy)",
       }
     }
   }
@@ -23,6 +19,7 @@ class RandomJokeApi {
     try {
       const response = await fetch(this.#url, this.#options);
       const data = await response.json();
+      console.log(JSON.stringify(data));
       return data.joke;
     } catch(error) {
       console.log(`${error}`);
@@ -37,22 +34,22 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://random-stuff-api.p.rapidapi.com/reddit/FetchSubredditPost?subreddit=memes&searchType=top";
+    this.#url = "https://meme-api.herokuapp.com/gimme";
     this.#options = {
       method: "GET",
-      headers: {
-        Authorization: "zp8cS9WMnvzU",
-        "X-RapidAPI-Key": "5ff2da6b38msh35c4993553a99d2p11ec64jsn39e47a56a104",
-        "X-RapidAPI-Host": "random-stuff-api.p.rapidapi.com"
-      }
     }
   }
 
   async getRandomMemeUrl() {
     try {
-      const response = await fetch(this.#url, this.#options);
-      const data = await response.json();
-      return data.image;
+      let nsfw = true;
+      let data = null;
+      while (nsfw) {
+        const response = await fetch(this.#url, this.#options);
+        data = await response.json()
+        nsfw = data.nsfw;
+      }
+      return data.url;
     } catch(error) {
       console.log(`${error}`);
     };
