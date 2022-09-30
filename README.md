@@ -3,7 +3,7 @@
 ## About **Desk Buddy**
 
 **Note** 
-* _I tried to blacklist certain types of jokes from being displayed. However, there is something wrong with the API and the results are not as expected. Apologies in advance if the program display any offensive jokes or memes..._
+* _30 Sep 2022: Random Stuff Api sadly stopped working. Hence, I've replaced it with 2 other APIs to get random jokes and memes (details below)._
 
 ### Project description
 As more people work from home or remotely, **Desk Buddy** means to be a virtual "companion" to "work" alongside the user. The virtual buddy will provide **encouragements** and **timely reminders to take breaks** - similar to how a real life co-worker may do.
@@ -28,8 +28,10 @@ As more people work from home or remotely, **Desk Buddy** means to be a virtual 
 * Javascript
 
 ### APIs used
-* [Random Stuff Api](https://api-info.pgamerx.com/) - to randomly generate jokes and memes
+* [Random Stuff Api](https://api-info.pgamerx.com/) - to randomly generate jokes and memes - removed since 30 Sep 2022
 * [Quotable API by Luke Peavey](https://github.com/lukePeavey/quotable) - to randomly generate quote
+* [Dad Jokes Api](https://icanhazdadjoke.com/)
+* [Random Meme Api](https://github.com/D3vd/Meme_Api)
 
 ### Additional features for future development
 * Music player (through Spotify API)
@@ -64,7 +66,7 @@ As more people work from home or remotely, **Desk Buddy** means to be a virtual 
   * Simple to do list functionalities, which allow users to add / edit / complete tasks
   
 * **APIs**:
-  * 2 different APIs are used in this program
+  * 3 different APIs are used in this program
   * Local storage is used to reduce API calls for random quotes
 
 ### Challenges
