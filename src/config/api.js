@@ -19,7 +19,6 @@ class RandomJokeApi {
     try {
       const response = await fetch(this.#url, this.#options);
       const data = await response.json();
-      console.log(JSON.stringify(data));
       return data.joke;
     } catch(error) {
       console.log(`${error}`);
@@ -34,7 +33,7 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://meme-api.herokuapp.com/gimme";
+    this.#url = "https://meme-api.com/gimme";
     this.#options = {
       method: "GET",
     }
