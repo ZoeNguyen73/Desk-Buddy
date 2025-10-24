@@ -71,8 +71,6 @@ class QuotesApi {
     try {
       const response = await fetch(this.#url);
       const data = await response.json();
-      console.log("data: " + JSON.stringify(data));
-      console.log("number of quotes: " + data.length);
       localStorage.setItem("quotes", JSON.stringify(data));
     } catch(error) {
       console.log(`${error}`);
@@ -80,19 +78,21 @@ class QuotesApi {
   }
 
   #populateQuotes() {
-    if (!localStorage.getItem("quotes")) {
-      this.#storeQuotesInLocalStorage();
+    const stored = localStorage.getItem("quotes");
+    if (!stored) {
+      this.#storeQuotesInLocalStorage()
+        .then(() => this.#populateQuotes()); // retry once loaded
+      return;
     }
-    const data = JSON.parse(localStorage.getItem("quotes"));
+    const data = JSON.parse(stored);
     data.forEach(quote => {
-      const str = `
-        "${quote.q}" - ${quote.a}
-      `;
+      const str = `"${quote.q}" - ${quote.a}`;
       this.quotes.push(str);
     });
   }
 
   getRandomQuote() {
+    if (this.quotes.length === 0) return "Loading quotes...";
     const index = Math.floor(Math.random() * this.quotes.length);
     return this.quotes[index];
   }
