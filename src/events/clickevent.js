@@ -1,17 +1,21 @@
-import { events } from "./event.js";
+// import { events } from "./event.js";
 import { randomJokeApi, randomMemeApi } from "../config/api.js";
 import { Message } from "../config/message.js";
 import { summaryComponent } from "../summary/summary.js";
 import Config from "../config/config.js";
 
 export default class ClickEvent {
-  static events = events;
+  static events = [];
   static randomJokeApi = randomJokeApi;
   static dom = document.querySelector(".chat-content");
   static summaryComponent = summaryComponent;
   static buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
 
   constructor() {
+  }
+
+  setEvents(events) {
+    ClickEvent.events = events;
   }
 
   waterClickEvent() {
