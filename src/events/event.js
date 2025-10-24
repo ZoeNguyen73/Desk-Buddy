@@ -66,26 +66,28 @@ export class RandomMessageEvent extends Event {
   }
 }
 
-/// create events
+// async init function
+export async function initEvents() {
+  await quotesApi.init();
+  
+  const randomMessageEvent = new RandomMessageEvent("Random message", "");
+  const randomQuoteEvent = new QuoteEvent("Random quote", "");
 
-const randomMessageEvent = new RandomMessageEvent("Random message", "");
+  const waterEvent = new Event("Water", "Time for a water break 💦💦🥤");
+  waterEvent.populateUserResponses({
+    "Yes, I am rehydrated!": "waterClickEvent"
+  });
 
-const randomQuoteEvent = new QuoteEvent("Random quote", "");
+  const stretchEvent = new Event("Stretch", "How about a 5-min stretch? 🤸");
+  stretchEvent.populateUserResponses({
+    "Done! Feeling much better now": "stretchClickEvent"
+  });
 
-const waterEvent = new Event("Water", "Time for a water break 💦💦🥤");
-waterEvent.populateUserResponses({
-  "Yes, I am rehydrated!": "waterClickEvent" 
-});
+  const breakEvent = new Event("Break", "Wanna see something funny? 😜");
+  breakEvent.populateUserResponses({
+    "A random meme": "memeClickEvent", 
+    "A random joke": "jokeClickEvent"
+  });
 
-const stretchEvent = new Event("Stretch", "How about a 5-min stretch? 🤸");
-stretchEvent.populateUserResponses({ 
-  "Done! Feeling much better now": "stretchClickEvent"
-});
-
-const breakEvent = new Event("Break", "Wanna see something funny? 😜");
-breakEvent.populateUserResponses({
-  "A random meme": "memeClickEvent", 
-  "A random joke": "jokeClickEvent"
-});
-
-export const events = [randomMessageEvent, randomQuoteEvent, waterEvent, stretchEvent, breakEvent];
+  return [randomMessageEvent, randomQuoteEvent, waterEvent, stretchEvent, breakEvent];
+};
