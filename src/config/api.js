@@ -64,32 +64,46 @@ class QuotesApi {
     this.#name = "Random Quotes";
     this.#url = "https://corsproxy.io/?https://zenquotes.io/api/quotes";
     this.quotes = [];
-    this.#populateQuotes();
+    // this.#populateQuotes();
   }
-  
-  async #storeQuotesInLocalStorage() {
+
+  async init() {
     try {
       const response = await fetch(this.#url);
       const data = await response.json();
-      localStorage.setItem("quotes", JSON.stringify(data));
-    } catch(error) {
-      console.log(`${error}`);
-    };
-  }
 
-  #populateQuotes() {
-    const stored = localStorage.getItem("quotes");
-    if (!stored) {
-      this.#storeQuotesInLocalStorage()
-        .then(() => this.#populateQuotes()); // retry once loaded
-      return;
+      this.quotes = data.map(q => `"${q.q}" - ${q.a}`);
+      localStorage.setItem("quotes", JSON.stringify(this.quotes));
+      console.log("Quotes loaded:", this.quotes.length);
+    } catch (error) {
+      console.error("Failed to fetch quotes:", error);
+      this.quotes = JSON.parse(localStorage.getItem("quotes")) || [];
     }
-    const data = JSON.parse(stored);
-    data.forEach(quote => {
-      const str = `"${quote.q}" - ${quote.a}`;
-      this.quotes.push(str);
-    });
   }
+  
+  // async #storeQuotesInLocalStorage() {
+  //   try {
+  //     const response = await fetch(this.#url);
+  //     const data = await response.json();
+  //     localStorage.setItem("quotes", JSON.stringify(data));
+  //   } catch(error) {
+  //     console.log(`${error}`);
+  //   };
+  // }
+
+  // #populateQuotes() {
+  //   const stored = localStorage.getItem("quotes");
+  //   if (!stored) {
+  //     this.#storeQuotesInLocalStorage()
+  //       .then(() => this.#populateQuotes()); // retry once loaded
+  //     return;
+  //   }
+  //   const data = JSON.parse(stored);
+  //   data.forEach(quote => {
+  //     const str = `"${quote.q}" - ${quote.a}`;
+  //     this.quotes.push(str);
+  //   });
+  // }
 
   getRandomQuote() {
     if (this.quotes.length === 0) return "Loading quotes...";
