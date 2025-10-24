@@ -62,7 +62,7 @@ class QuotesApi {
 
   constructor() {
     this.#name = "Random Quotes";
-    this.#url = "https://api.quotable.io/quotes?limit=150"
+    this.#url = "https://corsproxy.io/?https://zenquotes.io/api/quotes";
     this.quotes = [];
     this.#populateQuotes();
   }
@@ -71,6 +71,8 @@ class QuotesApi {
     try {
       const response = await fetch(this.#url);
       const data = await response.json();
+      console.log("data: " + JSON.stringify(data));
+      console.log("number of quotes: " + data.length);
       localStorage.setItem("quotes", JSON.stringify(data));
     } catch(error) {
       console.log(`${error}`);
@@ -81,10 +83,10 @@ class QuotesApi {
     if (!localStorage.getItem("quotes")) {
       this.#storeQuotesInLocalStorage();
     }
-    const data = JSON.parse(localStorage.getItem("quotes")).results;
+    const data = JSON.parse(localStorage.getItem("quotes"));
     data.forEach(quote => {
       const str = `
-        "${quote.content}" - ${quote.author}
+        "${quote.q}" - ${quote.a}
       `;
       this.quotes.push(str);
     });
