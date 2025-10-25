@@ -1,4 +1,3 @@
-// import { events } from "./event.js";
 import { randomJokeApi, randomMemeApi } from "../config/api.js";
 import { Message } from "../config/message.js";
 import { summaryComponent } from "../summary/summary.js";
@@ -40,7 +39,7 @@ export default class ClickEvent {
     };
   }
 
-  jokeClickEvent() {
+  async jokeClickEvent() {
     for (let i = 0, j = ClickEvent.events.length; i < j; i++) {
       const currentEvent = ClickEvent.events[i];
       if (currentEvent.type === "Break") {
@@ -49,7 +48,7 @@ export default class ClickEvent {
         break;
       }; 
     };
-    this.displayJoke();
+    await this.displayJoke();
   }
 
   async displayJoke() {
@@ -66,7 +65,7 @@ export default class ClickEvent {
     };
   }
 
-  memeClickEvent() {
+  async memeClickEvent() {
     for (let i = 0, j = ClickEvent.events.length; i < j; i++) {
       const currentEvent = ClickEvent.events[i];
       if (currentEvent.type === "Break") {
@@ -75,7 +74,7 @@ export default class ClickEvent {
         break;
       }; 
     };
-    this.displayMeme();
+    await this.displayMeme();
   }
 
   async displayMeme() {
