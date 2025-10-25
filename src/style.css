@@ -198,6 +198,7 @@ button {
 button:hover {
   background: #428b73;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 #config, .todo-list, #date-time-display, .day-summary, .shortcuts  {
