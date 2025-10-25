@@ -39,6 +39,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Stretch") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Stretch");
         break;
       }; 
     };
@@ -50,6 +51,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Break") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Break");
         break;
       }; 
     };
@@ -76,6 +78,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Break") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Break");
         break;
       }; 
     };

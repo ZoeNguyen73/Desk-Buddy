@@ -8,7 +8,7 @@ export default class ChatComponent {
     this.addClickEventListener();
   }
 
-  static displayStatic(domElement) {
+  displayStatic(domElement) {
     document.querySelector(".chat-content").append(domElement);
     this.#scrollToBottom();
   }
@@ -58,16 +58,19 @@ export default class ChatComponent {
     const lastMessage = messages[messages.length - 1];
     if (!lastMessage) return;
 
-    if (!lastMessage.querySelector(".reaction-emoji")) {
+    const bubble = lastMessage.querySelector(".buddy-message-content");
+    if (!bubble) return;
+
+    if (!bubble.querySelector(".reaction-emoji")) {
       const emojiSpan = document.createElement("span");
       emojiSpan.className = "reaction-emoji";
       emojiSpan.textContent =
         eventType === "Water" ? "💧" :
-        eventType === "Stretch" ? "🤸" :
-        eventType === "Break" ? "😜" :
+        eventType === "Stretch" ? "💯" :
+        eventType === "Break" ? "😆" :
         "👍";
       
-      lastMessage.appendChild(emojiSpan);
+      bubble.appendChild(emojiSpan);
     }
   }
 }
