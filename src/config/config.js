@@ -1,4 +1,3 @@
-import { events } from "../events/event.js";
 import { Message, MessageWithClickEvent, Notif } from "./message.js";
 
 export default class Config {
@@ -8,7 +7,7 @@ export default class Config {
   constructor(userName, soundToggleDOM, frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM, frequencyInMs = 5000, endTime = "23:59:59") {
     this.userName = userName;
     this.buddyProfilePicUrl = "./assets/images/buddy-profile-pic-cat.png";
-    this.events = events;
+    this.events = [];
     this.frequencyInMs = frequencyInMs;
     this.endTime = endTime;
     this.#addConfigChangeListeners(soundToggleDOM , frequencyDOM, endTimeSubmitDOM, endTimeEntryDOM);
@@ -21,6 +20,10 @@ export default class Config {
 
   assignChatComponent(chatComponent) {
     this.#chatComponent = chatComponent;
+  }
+
+  setEvents(events) {
+    this.events = events;
   }
 
   #getGreeting() {

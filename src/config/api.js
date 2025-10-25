@@ -33,22 +33,31 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://meme-api.com/gimme";
+    this.#url = "https://meme-api.com/gimme/";
     this.#options = {
       method: "GET",
-    }
+    };
+    this.subredditOptions = [
+      "wholesomememes",
+      "MEOW_IRL",
+      "me_irl",
+      "memes",
+      "dankmemes"
+    ]
   }
 
-  async getRandomMemeUrl() {
+  async getRandomMeme() {
     try {
       let nsfw = true;
       let data = null;
+      let subreddit = this.subredditOptions[Math.floor(Math.random() * this.subredditOptions.length)];
       while (nsfw) {
-        const response = await fetch(this.#url, this.#options);
-        data = await response.json()
+        const url = this.#url + subreddit;
+        const response = await fetch(url, this.#options);
+        data = await response.json();
         nsfw = data.nsfw;
       }
-      return data.url;
+      return {url: data.url, source: subreddit};
     } catch(error) {
       console.log(`${error}`);
     };
@@ -64,32 +73,46 @@ class QuotesApi {
     this.#name = "Random Quotes";
     this.#url = "https://corsproxy.io/?https://zenquotes.io/api/quotes";
     this.quotes = [];
-    this.#populateQuotes();
+    // this.#populateQuotes();
   }
-  
-  async #storeQuotesInLocalStorage() {
+
+  async init() {
     try {
       const response = await fetch(this.#url);
       const data = await response.json();
-      localStorage.setItem("quotes", JSON.stringify(data));
-    } catch(error) {
-      console.log(`${error}`);
-    };
-  }
 
-  #populateQuotes() {
-    const stored = localStorage.getItem("quotes");
-    if (!stored) {
-      this.#storeQuotesInLocalStorage()
-        .then(() => this.#populateQuotes()); // retry once loaded
-      return;
+      this.quotes = data.map(q => `"${q.q}" - ${q.a}`);
+      localStorage.setItem("quotes", JSON.stringify(this.quotes));
+      console.log("Quotes loaded:", this.quotes.length);
+    } catch (error) {
+      console.error("Failed to fetch quotes:", error);
+      this.quotes = JSON.parse(localStorage.getItem("quotes")) || [];
     }
-    const data = JSON.parse(stored);
-    data.forEach(quote => {
-      const str = `"${quote.q}" - ${quote.a}`;
-      this.quotes.push(str);
-    });
   }
+  
+  // async #storeQuotesInLocalStorage() {
+  //   try {
+  //     const response = await fetch(this.#url);
+  //     const data = await response.json();
+  //     localStorage.setItem("quotes", JSON.stringify(data));
+  //   } catch(error) {
+  //     console.log(`${error}`);
+  //   };
+  // }
+
+  // #populateQuotes() {
+  //   const stored = localStorage.getItem("quotes");
+  //   if (!stored) {
+  //     this.#storeQuotesInLocalStorage()
+  //       .then(() => this.#populateQuotes()); // retry once loaded
+  //     return;
+  //   }
+  //   const data = JSON.parse(stored);
+  //   data.forEach(quote => {
+  //     const str = `"${quote.q}" - ${quote.a}`;
+  //     this.quotes.push(str);
+  //   });
+  // }
 
   getRandomQuote() {
     if (this.quotes.length === 0) return "Loading quotes...";
