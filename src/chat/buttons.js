@@ -20,8 +20,22 @@ export default class Buttons {
       this.#config.updateConfig("endTime", newEndTime);
     });
 
-    this.#doms.pokeButton.addEventListener("click", () => {
-      Math.random() > 0.5 ? clickEvent.jokeClickEvent() : clickEvent.memeClickEvent();
+    this.#doms.pokeButton.addEventListener("click", async() => {
+      const btn = this.#doms.pokeButton;
+      btn.disabled = true;
+      btn.style.cursor = "wait";
+
+      try {
+        if (Math.random() > 0.5) {
+          await clickEvent.jokeClickEvent();
+        } else {
+          await clickEvent.memeClickEvent();
+        }
+      } finally {
+        btn.disabled = false;
+        btn.style.cursor = "pointer";
+      }
+      
     });
   }
 }
