@@ -54,6 +54,7 @@ class RandomMemeApi {
 
       const response = await fetch(this.#url, this.#options);
       const data = await response.json();
+      console.log("meme url: " + data.url);
       return data.url;
     } catch(error) {
       console.log(`${error}`);

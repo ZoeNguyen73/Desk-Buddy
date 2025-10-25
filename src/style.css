@@ -335,6 +335,11 @@ input:checked + .slider:before {
 .meme-pic {
   max-width: 90%;
   max-height: calc(100vh - 500px);
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .bold {
