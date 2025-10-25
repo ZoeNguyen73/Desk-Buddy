@@ -13,6 +13,10 @@ export default class ClickEvent {
   constructor() {
   }
 
+  setChatComponent(chatComponent) {
+    ClickEvent.chatComponent = chatComponent;
+  }
+
   setEvents(events) {
     ClickEvent.events = events;
   }
@@ -23,6 +27,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Water") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Water");
         break;
       };
     };

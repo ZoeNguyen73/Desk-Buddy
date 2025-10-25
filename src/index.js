@@ -35,6 +35,7 @@ async function init(userName) {
 
   const clickEvent = new ClickEvent();
   clickEvent.setEvents(events);
+  clickEvent.setChatComponent(chatComponent);
 
   const toDoList = new ToDoList(config);
   const timer = new Timer(config, chatComponent);
