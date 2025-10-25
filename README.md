@@ -8,7 +8,7 @@
 ## 🧭 Overview
 
 Desk Buddy is a **virtual coworker** that makes remote work more engaging.  
-It chats with you throughout the day — sending light-hearted reminders, jokes, and memes to keep you productive 💪 and smiling 😺.
+It chats with you throughout the day — sending light-hearted reminders, jokes, and memes to keep you productive and happy.
 
 ---
 
@@ -32,7 +32,7 @@ It chats with you throughout the day — sending light-hearted reminders, jokes,
 | **Backend / API Proxy** | Netlify Functions (serverless) |
 | **External APIs** | icanhazdadjoke • Meme API • ZenQuotes • Humor API |
 | **Hosting** | GitHub Pages (frontend) • Netlify (backend) |
-| **Storage** | Local Storage (for caching quotes) |
+| **Storage** | Local Storage (for caching quotes and remembering username) |
 
 ---
 
@@ -81,13 +81,6 @@ Desk Buddy began as my **first end-to-end web project** to apply fundamental web
 
 ---
 
-## 🗓️ Changelog
-
-- **Oct 2025:** Migrated to Humor API via Netlify Functions (Random Stuff API deprecated).  
-- **Sep 2022:** Initial release with Random Stuff API + Quotable API.  
-
----
-
 ## 🧑‍💻 Author
 
 **Zoe Nguyen** — Aspiring Full-Stack Developer  
@@ -109,5 +102,3 @@ Desk Buddy demonstrates my ability to:
 - Design and structure an interactive frontend from scratch  
 - Integrate external APIs securely via serverless architecture  
 - Combine technical execution with playful UX and clean code  
-
-> _“Built to remind you to hydrate and laugh — because code is better when you’re smiling.”_ 😸
