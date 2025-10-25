@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 export async function handler(event, context) {
   const HUMOR_API_KEY = process.env.HUMOR_API_KEY;
   const url = "https://api.humorapi.com/memes/random?api-key=" + HUMOR_API_KEY;
