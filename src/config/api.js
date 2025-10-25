@@ -33,31 +33,28 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://meme-api.com/gimme/";
+    this.#url = "https://desk-buddy.netlify.app/.netlify/functions/humor-api";
     this.#options = {
       method: "GET",
     };
-    this.subredditOptions = [
-      "wholesomememes",
-      "MEOW_IRL",
-      "me_irl",
-      "memes",
-      "dankmemes"
-    ]
   }
 
   async getRandomMeme() {
     try {
-      let nsfw = true;
-      let data = null;
-      let subreddit = this.subredditOptions[Math.floor(Math.random() * this.subredditOptions.length)];
-      while (nsfw) {
-        const url = this.#url + subreddit;
-        const response = await fetch(url, this.#options);
-        data = await response.json();
-        nsfw = data.nsfw;
-      }
-      return {url: data.url, source: subreddit};
+      // let nsfw = true;
+      // let data = null;
+      // let subreddit = this.subredditOptions[Math.floor(Math.random() * this.subredditOptions.length)];
+      // while (nsfw) {
+      //   const url = this.#url + subreddit;
+      //   const response = await fetch(url, this.#options);
+      //   data = await response.json();
+      //   nsfw = data.nsfw;
+      // }
+      // return {url: data.url, source: subreddit};
+
+      const response = await fetch(this.#url, this.#options);
+      const data = await response.json();
+      return data.url;
     } catch(error) {
       console.log(`${error}`);
     };
