@@ -41,17 +41,6 @@ class RandomMemeApi {
 
   async getRandomMeme() {
     try {
-      // let nsfw = true;
-      // let data = null;
-      // let subreddit = this.subredditOptions[Math.floor(Math.random() * this.subredditOptions.length)];
-      // while (nsfw) {
-      //   const url = this.#url + subreddit;
-      //   const response = await fetch(url, this.#options);
-      //   data = await response.json();
-      //   nsfw = data.nsfw;
-      // }
-      // return {url: data.url, source: subreddit};
-
       const response = await fetch(this.#url, this.#options);
       const data = await response.json();
       console.log("meme url: " + data.url);
