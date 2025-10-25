@@ -157,17 +157,36 @@ h2 {
   display: flex;
   flex-flow: row nowrap;
   max-width: 800px;
-  gap: 1em;
+  gap: 0.7em;
   align-items: flex-start;
   padding: 0.5em 0;
 }
 
 .buddy-message-content {
+  position: relative;
   background: lightblue;
   border-radius: 0.4em;
-  padding: 0.7em;
+  padding: 0.7em 1.2em 1.4em 0.7em;
   display: flex;
   flex-flow: column nowrap;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.reaction-emoji {
+  position: absolute;
+  bottom: -0.5em;
+  right: -0.5em;
+  font-size: 2rem;
+  opacity: 0.9;
+  pointer-events: none;
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
 }
 
 .user-input {
@@ -490,10 +509,6 @@ input:checked + .slider:before {
 
   .scrollable-list {
     height: calc(100vh - 800px);
-  }
-
-  .buddy-message {
-    gap: 0.7em;
   }
 
   #back-to-top-button {

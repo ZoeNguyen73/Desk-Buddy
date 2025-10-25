@@ -13,6 +13,10 @@ export default class ClickEvent {
   constructor() {
   }
 
+  setChatComponent(chatComponent) {
+    ClickEvent.chatComponent = chatComponent;
+  }
+
   setEvents(events) {
     ClickEvent.events = events;
   }
@@ -23,6 +27,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Water") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Water");
         break;
       };
     };
@@ -34,6 +39,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Stretch") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Stretch");
         break;
       }; 
     };
@@ -45,6 +51,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Break") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Break");
         break;
       }; 
     };
@@ -71,6 +78,7 @@ export default class ClickEvent {
       if (currentEvent.type === "Break") {
         currentEvent.occurrenceCount++;
         ClickEvent.summaryComponent.displayCount(currentEvent.type, currentEvent.occurrenceCount);
+        ClickEvent.chatComponent.markMessageReacted("Break");
         break;
       }; 
     };

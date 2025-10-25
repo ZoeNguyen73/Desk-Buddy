@@ -37,7 +37,7 @@ export default class Config {
   getMessage(index) {
     const currentEvent = this.events[index];
     const message = new Message(`${this.#getGreeting()} ${currentEvent.message}`, this.buddyProfilePicUrl);
-    return message;
+    return { message, type: currentEvent.type };
   }
 
   getResponseMessages(index) {

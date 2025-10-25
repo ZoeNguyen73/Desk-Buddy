@@ -83,9 +83,9 @@ export class Timer {
   }
 
   #sendMessage(index) {
-    const message = this.#config.getMessage(index);
+    const { message, type } = this.#config.getMessage(index);
     const messageDom = message.render();
-    this.#chatComponent.display(messageDom);
+    this.#chatComponent.display(messageDom, type);
   }
 
   #sendMessageWithClickEvent(index) {
