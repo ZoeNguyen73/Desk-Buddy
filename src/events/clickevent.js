@@ -1,4 +1,3 @@
-// import { events } from "./event.js";
 import { randomJokeApi, randomMemeApi } from "../config/api.js";
 import { Message } from "../config/message.js";
 import { summaryComponent } from "../summary/summary.js";
