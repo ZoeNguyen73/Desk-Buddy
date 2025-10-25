@@ -8,16 +8,16 @@
 ## 🧭 Overview
 
 Desk Buddy is a **virtual coworker** that makes remote work more engaging.  
-It chats with you throughout the day — sending light-hearted reminders, jokes, and memes to keep you productive and happy.
+It chats with you throughout the day - sending light-hearted reminders, jokes, and memes to keep you productive and motivated.
 
 ---
 
 ## 🚀 Features
 
-- 🕒 **Timer-based events** — configurable message frequency  
+- 🕒 **Timer-based events** with configurable message frequency  
 - 💬 **Interactive chat interface** with system and user messages  
 - 😂 **Random jokes & memes** fetched securely via Netlify Functions  
-- 💧 **Stretch / water / break reminders** with animated emoji reactions  
+- 💧 **Stretch / water / break reminders** with corresponding user responses
 - 📝 **Simple to-do list** for daily task tracking  
 - 🕹️ **End-of-day summary** message  
 - 🔊 **Notification sounds** for new chat messages  
@@ -28,10 +28,10 @@ It chats with you throughout the day — sending light-hearted reminders, jokes,
 
 | Category | Tools / Libraries |
 |-----------|------------------|
-| **Frontend** | HTML • CSS (Flexbox + responsive) • Vanilla JavaScript (ES Modules) |
+| **Frontend** | HTML, CSS (Flexbox + responsive), Vanilla JavaScript (ES Modules) |
 | **Backend / API Proxy** | Netlify Functions (serverless) |
-| **External APIs** | icanhazdadjoke • Meme API • ZenQuotes • Humor API |
-| **Hosting** | GitHub Pages (frontend) • Netlify (backend) |
+| **External APIs** | icanhazdadjoke, Meme API, ZenQuotes, Humor API |
+| **Hosting** | GitHub Pages (frontend), Netlify (backend) |
 | **Storage** | Local Storage (for caching quotes and remembering username) |
 
 ---
@@ -63,7 +63,7 @@ Desk Buddy began as my **first end-to-end web project** to apply fundamental web
 
 ## 💡 Lessons Learned
 
-- Think in **components** and separate concerns early — even in vanilla JS.  
+- Think in **components** and separate concerns early, even in vanilla JS.  
 - **Visualize data flow** between modules to reduce state bugs.  
 - Handle asynchronous events gracefully with user feedback.  
 - Keep API keys secure by off-loading calls to serverless functions.  
