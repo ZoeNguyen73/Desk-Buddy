@@ -33,22 +33,31 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://meme-api.com/gimme";
+    this.#url = "https://meme-api.com/gimme/";
     this.#options = {
       method: "GET",
-    }
+    };
+    this.subredditOptions = [
+      "wholesomememes",
+      "MEOW_IRL",
+      "me_irl",
+      "memes",
+      "dankmemes"
+    ]
   }
 
-  async getRandomMemeUrl() {
+  async getRandomMeme() {
     try {
       let nsfw = true;
       let data = null;
+      let subreddit = this.subredditOptions[Math.floor(Math.random() * this.subredditOptions.length)];
       while (nsfw) {
-        const response = await fetch(this.#url, this.#options);
-        data = await response.json()
+        const url = this.#url + subreddit;
+        const response = await fetch(url, this.#options);
+        data = await response.json();
         nsfw = data.nsfw;
       }
-      return data.url;
+      return {url: data.url, source: subreddit};
     } catch(error) {
       console.log(`${error}`);
     };
