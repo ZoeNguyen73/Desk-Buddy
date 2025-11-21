@@ -1,8 +1,15 @@
 export async function handler(event, context) {
   const HUMOR_API_KEY = process.env.HUMOR_API_KEY;
-  const url = "https://api.humorapi.com/memes/random";
+  const url = "https://api.humorapi.com/memes/random?min-rating=7";
 
-  const memeAPIurl = "https://meme-api.com/gimme"; 
+  const memeAPIurl = "https://meme-api.com/gimme/";
+  const memeAPIsubs = [
+    "wholesomememes",
+    "MadeMeSmile",
+    "AnimalsBeingBros",
+    "aww",
+    " wholesomecartoons",
+  ]; 
 
   try {
     const humorAPIresponse = await fetch(url, {
@@ -11,12 +18,16 @@ export async function handler(event, context) {
       },
     });
     let data = await humorAPIresponse.json();
+    console.log("fetching meme from humorAPI");
     if (data.code === 402) {
       // back up logic:
       // when daily limit of humor api is reached, use the memeAPIurl instead
+      const sub = memeAPIsubs[Math.floor(Math.random() * memeAPIsubs.length)];
+      const url = memeAPIurl + sub;
       let nsfw = true;
       while (nsfw) {
-        const memeAPIresponse = await fetch(memeAPIurl);
+        console.log("fetching meme from memeAPI at subreddit: " + sub);
+        const memeAPIresponse = await fetch(url);
         data = await memeAPIresponse.json();
         nsfw = data.nsfw;
       }
