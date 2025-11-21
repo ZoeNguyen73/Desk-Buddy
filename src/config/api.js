@@ -33,7 +33,14 @@ class RandomMemeApi {
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://desk-buddy.netlify.app/.netlify/functions/humor-api";
+
+    const hostname = window.location.hostname;
+    const isLocal = hostname === "localhost" || hostname === "127.0.0.1";
+
+    this.#url = isLocal
+      ? "http://localhost:8888/.netlify/functions/humor-api"
+      : "https://desk-buddy.netlify.app/.netlify/functions/humor-api";
+
     this.#options = {
       method: "GET",
     };
@@ -41,8 +48,10 @@ class RandomMemeApi {
 
   async getRandomMeme() {
     try {
+      console.log("fetching with url: " + this.#url);
       const response = await fetch(this.#url, this.#options);
       const data = await response.json();
+      console.log("meme api response data: " + JSON.stringify(data));
       console.log("meme url: " + data.url);
       return data.url;
     } catch(error) {
