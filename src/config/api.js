@@ -30,23 +30,61 @@ class RandomMemeApi {
   #name;
   #url;
   #options;
+  memes = [];
 
   constructor() {
     this.#name = "Random Meme";
-    this.#url = "https://desk-buddy.netlify.app/.netlify/functions/humor-api";
+
+    const hostname = window.location.hostname;
+    const isLocal = hostname === "localhost" || hostname === "127.0.0.1";
+
+    this.#url = isLocal
+      ? "http://localhost:8888/.netlify/functions/humor-api"
+      : "https://desk-buddy.netlify.app/.netlify/functions/humor-api";
+
     this.#options = {
       method: "GET",
     };
   }
 
+  async init() {
+    try {
+      const response = await fetch(this.#url);
+      const data = await response.json();
+
+      this.memes = [...data];
+      localStorage.setItem("memes", JSON.stringify(this.memes));
+      console.log("Memes loaded:", this.memes.length);
+    } catch (error) {
+      console.error("Failed to fetch memes:", error);
+      this.memes = JSON.parse(localStorage.getItem("memes")) || [];
+    }
+  }
+
   async getRandomMeme() {
     try {
-      const response = await fetch(this.#url, this.#options);
-      const data = await response.json();
-      console.log("meme url: " + data.url);
-      return data.url;
+
+      // if the current memes list is empty, init first to populate new list
+      if (!this.memes || this.memes.length === 0) {
+        await this.init();
+
+        // fail safe: if init fails => stop the potential infinite loop
+        if (!this.memes || this.memes.length === 0) {
+          throw new Error("No memes available");
+        }
+      } 
+      
+      const index = Math.floor(Math.random() * this.memes.length);
+      const [meme] = this.memes.splice(index, 1);
+
+      // keep localStorage in sync
+      localStorage.setItem("memes", JSON.stringify(this.memes));
+
+      return meme; 
+
     } catch(error) {
       console.log(`${error}`);
+      return null;
     };
   }
 }
@@ -76,30 +114,6 @@ class QuotesApi {
       this.quotes = JSON.parse(localStorage.getItem("quotes")) || [];
     }
   }
-  
-  // async #storeQuotesInLocalStorage() {
-  //   try {
-  //     const response = await fetch(this.#url);
-  //     const data = await response.json();
-  //     localStorage.setItem("quotes", JSON.stringify(data));
-  //   } catch(error) {
-  //     console.log(`${error}`);
-  //   };
-  // }
-
-  // #populateQuotes() {
-  //   const stored = localStorage.getItem("quotes");
-  //   if (!stored) {
-  //     this.#storeQuotesInLocalStorage()
-  //       .then(() => this.#populateQuotes()); // retry once loaded
-  //     return;
-  //   }
-  //   const data = JSON.parse(stored);
-  //   data.forEach(quote => {
-  //     const str = `"${quote.q}" - ${quote.a}`;
-  //     this.quotes.push(str);
-  //   });
-  // }
 
   getRandomQuote() {
     if (this.quotes.length === 0) return "Loading quotes...";
