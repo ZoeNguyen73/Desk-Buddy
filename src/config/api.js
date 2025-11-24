@@ -114,30 +114,6 @@ class QuotesApi {
       this.quotes = JSON.parse(localStorage.getItem("quotes")) || [];
     }
   }
-  
-  // async #storeQuotesInLocalStorage() {
-  //   try {
-  //     const response = await fetch(this.#url);
-  //     const data = await response.json();
-  //     localStorage.setItem("quotes", JSON.stringify(data));
-  //   } catch(error) {
-  //     console.log(`${error}`);
-  //   };
-  // }
-
-  // #populateQuotes() {
-  //   const stored = localStorage.getItem("quotes");
-  //   if (!stored) {
-  //     this.#storeQuotesInLocalStorage()
-  //       .then(() => this.#populateQuotes()); // retry once loaded
-  //     return;
-  //   }
-  //   const data = JSON.parse(stored);
-  //   data.forEach(quote => {
-  //     const str = `"${quote.q}" - ${quote.a}`;
-  //     this.quotes.push(str);
-  //   });
-  // }
 
   getRandomQuote() {
     if (this.quotes.length === 0) return "Loading quotes...";
