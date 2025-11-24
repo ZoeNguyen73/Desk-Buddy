@@ -1,4 +1,4 @@
-import { quotesApi } from "../config/api.js";
+import { quotesApi, randomMemeApi } from "../config/api.js";
 
 export class Event {
   #eventListenerType = "click";
@@ -69,6 +69,7 @@ export class RandomMessageEvent extends Event {
 // async init function
 export async function initEvents() {
   await quotesApi.init();
+  await randomMemeApi.init();
   
   const randomMessageEvent = new RandomMessageEvent("Random message", "");
   const randomQuoteEvent = new QuoteEvent("Random quote", "");

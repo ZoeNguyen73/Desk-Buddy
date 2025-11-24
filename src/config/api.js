@@ -30,6 +30,7 @@ class RandomMemeApi {
   #name;
   #url;
   #options;
+  memes = [];
 
   constructor() {
     this.#name = "Random Meme";
@@ -46,16 +47,44 @@ class RandomMemeApi {
     };
   }
 
+  async init() {
+    try {
+      const response = await fetch(this.#url);
+      const data = await response.json();
+
+      this.memes = [...data];
+      localStorage.setItem("memes", JSON.stringify(this.memes));
+      console.log("Memes loaded:", this.memes.length);
+    } catch (error) {
+      console.error("Failed to fetch memes:", error);
+      this.memes = JSON.parse(localStorage.getItem("memes")) || [];
+    }
+  }
+
   async getRandomMeme() {
     try {
-      console.log("fetching with url: " + this.#url);
-      const response = await fetch(this.#url, this.#options);
-      const data = await response.json();
-      console.log("meme api response data: " + JSON.stringify(data));
-      console.log("meme url: " + data.url);
-      return data.url;
+
+      // if the current memes list is empty, init first to populate new list
+      if (!this.memes || this.memes.length === 0) {
+        await this.init();
+
+        // fail safe: if init fails => stop the potential infinite loop
+        if (!this.memes || this.memes.length === 0) {
+          throw new Error("No memes available");
+        }
+      } 
+      
+      const index = Math.floor(Math.random() * this.memes.length);
+      const [meme] = this.memes.splice(index, 1);
+
+      // keep localStorage in sync
+      localStorage.setItem("memes", JSON.stringify(this.memes));
+
+      return meme; 
+
     } catch(error) {
       console.log(`${error}`);
+      return null;
     };
   }
 }
