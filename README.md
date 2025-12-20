@@ -85,7 +85,9 @@ Desk Buddy began as my **first end-to-end web project** to apply fundamental web
 ## 🧑‍💻 Author
 
 **Zoe Nguyen** — Aspiring Full-Stack Developer  
-🌐 [Portfolio Website](#) 💼 [LinkedIn](https://www.linkedin.com/in/zoe-nguyen-ndnn/) 📫 nganguyen0703@gmail.com
+🌐 Portfolio _(coming soon)_  
+💼 [LinkedIn](https://www.linkedin.com/in/zoe-nguyen-ndnn/)  
+📫 nganguyen0703@gmail.com
 
 ---
 
